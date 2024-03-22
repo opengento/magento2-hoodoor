@@ -11,9 +11,9 @@ use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\Manager as MessageManager;
+use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
 use Opengento\PasswordLessLogin\Exception\LoginException;
 use Opengento\PasswordLessLogin\Model\LoginRequest;
-use Opengento\PasswordLessLogin\Model\LoginRequestRepository;
 use Opengento\PasswordLessLogin\Service\Account\Login as LoginService;
 
 class ProcessLogin implements HttpGetActionInterface
@@ -24,14 +24,14 @@ class ProcessLogin implements HttpGetActionInterface
     private ?LoginRequest $loginRequest;
 
     /**
-     * @param \Opengento\PasswordLessLogin\Model\LoginRequestRepository $loginRequestRepository
+     * @param \Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface $loginRequestRepository
      * @param \Opengento\PasswordLessLogin\Service\Account\Login $loginService
      * @param \Magento\Framework\App\RequestInterface $request
      * @param \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
      * @param \Magento\Framework\Message\Manager $messageManager
      */
     public function __construct(
-        protected readonly LoginRequestRepository $loginRequestRepository,
+        protected readonly RequestLoginRepositoryInterface $loginRequestRepository,
         protected readonly LoginService $loginService,
         protected readonly RequestInterface $request,
         protected readonly RedirectFactory $redirectFactory,
@@ -74,7 +74,6 @@ class ProcessLogin implements HttpGetActionInterface
     /**
      * @param string $email
      * @return void
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     protected function setLoginRequest(string $email): void
     {

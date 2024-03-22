@@ -15,15 +15,15 @@ use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
 use Opengento\PasswordLessLogin\Model\Email;
 use Opengento\PasswordLessLogin\Model\LoginRequest;
-use Opengento\PasswordLessLogin\Model\LoginRequestRepository;
 use Psr\Log\LoggerInterface;
 
 class EmailProcessor
 {
     /**
-     * @param \Opengento\PasswordLessLogin\Model\LoginRequestRepository $loginRequestRepository
+     * @param \Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface $loginRequestRepository
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
@@ -33,7 +33,7 @@ class EmailProcessor
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
-        protected readonly LoginRequestRepository $loginRequestRepository,
+        protected readonly RequestLoginRepositoryInterface $loginRequestRepository,
         protected readonly ScopeConfigInterface $scopeConfig,
         protected readonly TransportBuilder $transportBuilder,
         protected readonly StoreManagerInterface $storeManager,

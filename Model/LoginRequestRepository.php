@@ -10,9 +10,10 @@ namespace Opengento\PasswordLessLogin\Model;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
 use Opengento\PasswordLessLogin\Model\ResourceModel\LoginRequest as LoginRequestResource;
 
-class LoginRequestRepository
+class LoginRequestRepository implements RequestLoginRepositoryInterface
 {
     public function __construct(
         protected readonly LoginRequestFactory $loginRequestFactory,
