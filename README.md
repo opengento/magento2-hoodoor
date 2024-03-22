@@ -5,7 +5,7 @@
 [![Packagist](https://img.shields.io/packagist/dt/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-module/stats)
 [![Packagist](https://img.shields.io/packagist/dm/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-module/stats)
 
-This module add...
+This module allows to you login without a password and without using a third-party service.
 
 - [Setup](#setup)
     - [Composer installation](#composer-installation)
