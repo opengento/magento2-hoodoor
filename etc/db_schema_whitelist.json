@@ -1,0 +1,14 @@
+{
+    "customer_login_request_queue": {
+        "column": {
+            "entity_id": true,
+            "email": true,
+            "token": true,
+            "is_used": true,
+            "expires_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

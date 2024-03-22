@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <passwordlesslogin>
+            <email>
+                <template_id>passwordless_login</template_id>
+                <sender_email>admin@opengento.fr</sender_email>
+                <sender_name>Opengento</sender_name>
+            </email>
+        </passwordlesslogin>
+    </default>
+</config>

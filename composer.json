@@ -1,0 +1,46 @@
+{
+    "name": "opengento/module-passwordless-login",
+    "description": "This module allows to you login without a password and without using a third-party service.",
+    "keywords": [
+        "php",
+        "magento",
+        "magento2",
+        "module",
+        "extension",
+        "free"
+    ],
+    "require": {
+        "php": "^8.1",
+        "psr/log": "*",
+        "magento/framework": "*"
+    },
+    "require-dev": {
+        "magento/magento-coding-standard": "^33",
+        "roave/security-advisories": "dev-latest"
+    },
+    "type": "magento2-module",
+    "license": [
+        "MIT"
+    ],
+    "homepage": "https://github.com/opengento/magento2-passwordless-login",
+    "authors": [
+        {
+            "name": "Opengento Team",
+            "email": "opengento@gmail.com",
+            "homepage": "https://opengento.fr/",
+            "role": "lead"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/opengento/magento2-passwordless-login",
+        "issues": "https://github.com/opengento/magento2-passwordless-login/issues"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Opengento\\PasswordLessLogin\\": ""
+        }
+    }
+}
