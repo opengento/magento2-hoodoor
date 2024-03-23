@@ -10,7 +10,6 @@ This module allows to you login without a password and without using a third-par
 - [Setup](#setup)
     - [Composer installation](#composer-installation)
     - [Setup the module](#setup-the-module)
-- [Features](#features)
 - [Settings](#settings)
 - [Documentation](#documentation)
 - [Support](#support)
@@ -23,7 +22,7 @@ Magento 2 Open Source or Commerce edition is required.
 
 ###  Composer installation
 
-Run the following composer command: (Not available on Packagist yet)
+Run the following composer command:
 
 ```
 composer require opengento/module-passwordless-login
@@ -40,6 +39,8 @@ bin/magento setup:upgrade
 **If you are in production mode, do not forget to recompile and redeploy the static resources.**
 
 ## Settings
+
+The module is compatible with Magento 2 version 2.4.6-p4.
 
 The configuration for this module is available in `Stores > Configuration > Customer > PasswordLess Login`.
 
