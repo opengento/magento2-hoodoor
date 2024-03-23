@@ -40,12 +40,11 @@ bin/magento setup:upgrade
 
 ## Settings
 
-The module is compatible with Magento 2 version 2.4.6-p4.
-
 The configuration for this module is available in `Stores > Configuration > Customer > PasswordLess Login`.
 
 ## Documentation
 
+The module is compatible with Magento 2 version 2.4.6-p4.
 
 ## Support
 
