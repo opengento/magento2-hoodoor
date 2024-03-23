@@ -39,12 +39,6 @@ bin/magento setup:upgrade
 
 **If you are in production mode, do not forget to recompile and redeploy the static resources.**
 
-## Features
-
-### Country to store mapping
-
-Define many countries to many stores relation. This configuration will allows Magento to map stores with countries.
-
 ## Settings
 
 The configuration for this module is available in `Stores > Configuration > Customer > PasswordLess Login`.
@@ -58,8 +52,8 @@ Raise a new [request](https://github.com/opengento/magento2-passwordless-login/i
 
 ## Authors
 
-- **Opengento Community** - *Lead* - [![Twitter Follow](https://img.shields.io/twitter/follow/opengento.svg?style=social)](https://twitter.com/opengento)
-- **Contributors** - *Contributor* - [![GitHub contributors](https://img.shields.io/github/contributors/opengento/magento2-module.svg?style=flat-square)](https://github.com/opengento/magento2-module/graphs/contributors)
+- **Opengento Community** - *[Lead](https://github.com/ronangr1)* - [![Twitter Follow](https://img.shields.io/twitter/follow/opengento.svg?style=social)](https://twitter.com/opengento)
+- **Contributors** - *[ronangr1](https://github.com/ronangr1)* - [![GitHub contributors](https://img.shields.io/github/contributors/opengento/magento2-module.svg?style=flat-square)](https://github.com/opengento/magento2-module/graphs/contributors)
 
 ## License
 
