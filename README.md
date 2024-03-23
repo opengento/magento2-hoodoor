@@ -52,8 +52,9 @@ Raise a new [request](https://github.com/opengento/magento2-passwordless-login/i
 
 ## Authors
 
-- **Opengento Community** - *[Lead](https://github.com/ronangr1)* - [![Twitter Follow](https://img.shields.io/twitter/follow/opengento.svg?style=social)](https://twitter.com/opengento)
-- **Contributors** - *[ronangr1](https://github.com/ronangr1)* - [![GitHub contributors](https://img.shields.io/github/contributors/opengento/magento2-module.svg?style=flat-square)](https://github.com/opengento/magento2-module/graphs/contributors)
+- **Opengento Community** - *Lead* - [![Twitter Follow](https://img.shields.io/twitter/follow/opengento.svg?style=social)](https://twitter.com/opengento)
+- **Ronan Guérin** - *Maintainer* - [![GitHub followers](https://img.shields.io/github/followers/ronangr1.svg?style=social)](https://github.com/ronangr1)
+- **Contributors** - *Contributor* - [![GitHub contributors](https://img.shields.io/github/contributors/opengento/magento2-store-path-url.svg?style=flat-square)](https://github.com/opengento/magento2-store-path-url/graphs/contributors)
 
 ## License
 
