@@ -61,7 +61,6 @@ class Account
                 $this->loginRequestRepository->save($loginRequest);
             }
         } catch (\Exception $e) {
-            dd($e->getMessage());
             return false;
         }
         return true;

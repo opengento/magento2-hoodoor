@@ -8,36 +8,36 @@ declare(strict_types=1);
 namespace Opengento\PasswordLessLogin\Controller\Account;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
-use Opengento\PasswordLessLogin\Exception\LoginException;
-use Opengento\PasswordLessLogin\Model\LoginRequest;
+use Opengento\PasswordLessLogin\Exception\RequestException;
+use Opengento\PasswordLessLogin\Model\Email;
 use Opengento\PasswordLessLogin\Service\Account\Login as LoginService;
+use Opengento\PasswordLessLogin\Service\Request\Encryption as EncryptionService;
 
 class ProcessLogin implements HttpGetActionInterface
 {
     /**
-     * @var \Opengento\PasswordLessLogin\Model\LoginRequest|null
-     */
-    private ?LoginRequest $loginRequest;
-
-    /**
      * @param \Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface $loginRequestRepository
      * @param \Opengento\PasswordLessLogin\Service\Account\Login $loginService
+     * @param \Opengento\PasswordLessLogin\Service\Request\Encryption $encryptionService
      * @param \Magento\Framework\App\RequestInterface $request
      * @param \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
      * @param \Magento\Framework\Message\Manager $messageManager
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
         protected readonly RequestLoginRepositoryInterface $loginRequestRepository,
         protected readonly LoginService $loginService,
+        protected readonly EncryptionService $encryptionService,
         protected readonly RequestInterface $request,
         protected readonly RedirectFactory $redirectFactory,
-        protected readonly MessageManager $messageManager
+        protected readonly MessageManager $messageManager,
+        protected readonly ScopeConfigInterface $scopeConfig
     ) {
-        $this->loginRequest = null;
     }
 
     /**
@@ -49,62 +49,35 @@ class ProcessLogin implements HttpGetActionInterface
         $params = $this->request->getParams();
         if ($params) {
             try {
-                if (isset($params['email']) && isset($params['token'])) {
-                    $this->setLoginRequest($params['email']);
+                if (isset($params['request'])) {
+                    $secretKey = $this->scopeConfig->getValue(Email::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY);
+                    $decryptedData = $this->encryptionService->decrypt($params['request'], $secretKey);
+                    $params = explode("/", $decryptedData);
+                    $params = array_chunk($params, 2);
+                    $params = array_combine(array_column($params, 0), array_column($params, 1));
+                    if (isset($params['email']) && isset($params['token'])) {
+                        $request = $this->loginRequestRepository->get($params['email']);
+                        if ($request->getToken() === $params['token']) {
+                            if ($request->hasBeenUsed() || $request->hasExpired()) {
+                                $this->messageManager->addErrorMessage(__('Unable to execute request. Please try again.'));
+                                return $redirect->setPath('customer/account/login');
+                            }
+                            $this->loginRequestRepository->lock($request);
+                            $this->loginService->process($params);
+                            $this->loginRequestRepository->delete($request);
+                        } else {
+                            throw new RequestException(_('Invalid request. Please try again.'));
+                        }
+                    } else {
+                        throw new RequestException(_('Invalid request. Please try again.'));
+                    }
                 } else {
-                    throw new LoginException(_('Invalid request. Please try again.'));
+                    throw new RequestException(_('Invalid request. Please try again.'));
                 }
-                if(!$this->getLoginRequest()->isValidToken($params['token'])) {
-                    throw new LoginException(_('Invalid request. Please try again.'));
-                }
-                if ($this->getLoginRequest()->hasBeenUsed() || $this->getLoginRequest()->hasExpired()) {
-                    $this->messageManager->addErrorMessage(__('Unable to execute request. Please try again.'));
-                    return $redirect->setPath('customer/account/login');
-                }
-                $this->lockRequest();
-                $this->loginService->process($params);
-                $this->deleteRequest();
             } catch (\Exception $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
             }
         }
         return $redirect->setPath('customer/account');
-    }
-
-    /**
-     * @param string $email
-     * @return void
-     */
-    protected function setLoginRequest(string $email): void
-    {
-        if (!$this->loginRequest) {
-            $this->loginRequest = $this->loginRequestRepository->get($email);
-        }
-    }
-
-    /**
-     * @return \Opengento\PasswordLessLogin\Model\LoginRequest|null
-     */
-    public function getLoginRequest(): ?LoginRequest
-    {
-        return $this->loginRequest;
-    }
-
-    /**
-     * @throws \Exception
-     */
-    protected function lockRequest(): void
-    {
-        $request = $this->getLoginRequest();
-        $this->loginRequestRepository->lock($request);
-    }
-
-    /**
-     * @throws \Exception
-     */
-    protected function deleteRequest(): void
-    {
-        $request = $this->getLoginRequest();
-        $this->loginRequestRepository->delete($request);
     }
 }

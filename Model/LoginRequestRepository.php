@@ -23,26 +23,28 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
 
     /**
      * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function get(string $email): LoginRequest
     {
         $model = $this->loginRequestFactory->create();
         $this->loginRequestResource->load($model, $email, 'email');
-        if (!$model->getEmail()) {
-            throw new NoSuchEntityException(__('Request with email "%1" does not exist.', $email));
+        if (!$model->getId()) {
+            throw new NoSuchEntityException(__('RequestException with email "%1" does not exist.', $email));
         }
         return $model;
     }
 
     /**
      * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getById(string $id): LoginRequest
     {
         $model = $this->loginRequestFactory->create();
         $this->loginRequestResource->load($model, $id);
         if (!$model->getId()) {
-            throw new NoSuchEntityException(__('Request with id "%1" does not exist.', $id));
+            throw new NoSuchEntityException(__('RequestException with id "%1" does not exist.', $id));
         }
         return $model;
     }

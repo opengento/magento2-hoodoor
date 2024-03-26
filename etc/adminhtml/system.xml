@@ -7,7 +7,7 @@
             <label>PasswordLess Login</label>
             <tab>customer</tab>
             <resource>Opengento_PasswordLessLogin::config</resource>
-            <group id="email" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <group id="email" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Email</label>
                 <field id="template_id" type="text" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Template</label>
@@ -17,6 +17,14 @@
                 </field>
                 <field id="sender_name" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Sender Name</label>
+                </field>
+            </group>
+            <group id="security" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Security</label>
+                <field id="secret_key" type="password" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Secret Key</label>
+                    <frontend_model>Opengento\PasswordLessLogin\Block\Adminhtml\System\Config\Button</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
             </group>
         </section>
