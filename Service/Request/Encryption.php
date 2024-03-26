@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Opengento\PasswordLessLogin\Service\Request;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\Encryption\EncryptorInterface;
 use Opengento\PasswordLessLogin\Model\Email;
 
 class Encryption
@@ -17,11 +16,9 @@ class Encryption
     protected string $secretKey;
 
     /**
-     * @param \Magento\Framework\Encryption\EncryptorInterface $encryptor
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        protected readonly EncryptorInterface $encryptor,
         protected readonly ScopeConfigInterface $scopeConfig
     ) {
         $this->secretKey = $this->scopeConfig->getValue(Email::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY);
