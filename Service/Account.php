@@ -13,6 +13,7 @@ use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\PasswordLessLogin\Model\LoginRequestRepository;
 use Opengento\PasswordLessLogin\Processor\EmailProcessor;
 use Opengento\PasswordLessLogin\Service\Account\Validation as AccountValidation;
+use Psr\Log\LoggerInterface;
 
 class Account
 {
@@ -22,13 +23,15 @@ class Account
      * @param \Opengento\PasswordLessLogin\Service\Account\Validation $accountValidation
      * @param \Opengento\PasswordLessLogin\Processor\EmailProcessor $emailProcessor
      * @param \Magento\Framework\Message\Manager $messageManager
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         protected readonly LoginRequestFactory $loginRequestFactory,
         protected readonly LoginRequestRepository $loginRequestRepository,
         protected readonly AccountValidation $accountValidation,
         protected readonly EmailProcessor $emailProcessor,
-        protected readonly MessageManager $messageManager
+        protected readonly MessageManager $messageManager,
+        protected readonly LoggerInterface $logger
     ) {
     }
 
@@ -51,16 +54,15 @@ class Account
             $isValid = $this->accountValidation->validate($email);
             if ($isValid) {
                 $dateTime = new \DateTime();
-                $expiresAt = $dateTime->modify('+15 minutes');
                 $mathRandom = new Random();
-                $token = $mathRandom->getRandomString(64);
                 $loginRequest = $this->loginRequestFactory->create();
                 $loginRequest->setEmail($email)
-                    ->setToken($token)
-                    ->setExpiresAt($expiresAt);
+                    ->setToken($mathRandom->getRandomString(64))
+                    ->setExpiresAt($dateTime->modify('+15 minutes'));
                 $this->loginRequestRepository->save($loginRequest);
             }
         } catch (\Exception $e) {
+            $this->logger->debug($e->getMessage());
             return false;
         }
         return true;

@@ -13,8 +13,8 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
+use Opengento\PasswordLessLogin\Enum\Config;
 use Opengento\PasswordLessLogin\Exception\RequestException;
-use Opengento\PasswordLessLogin\Model\Email;
 use Opengento\PasswordLessLogin\Service\Account\Login as LoginService;
 use Opengento\PasswordLessLogin\Service\Request\Encryption as EncryptionService;
 
@@ -50,7 +50,7 @@ class ProcessLogin implements HttpGetActionInterface
         if ($params) {
             try {
                 if (isset($params['request'])) {
-                    $secretKey = $this->scopeConfig->getValue(Email::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY);
+                    $secretKey = $this->scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value);
                     $decryptedData = $this->encryptionService->decrypt($params['request'], $secretKey);
                     $params = explode("/", $decryptedData);
                     $params = array_chunk($params, 2);

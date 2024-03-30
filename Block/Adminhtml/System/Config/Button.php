@@ -10,7 +10,7 @@ namespace Opengento\PasswordLessLogin\Block\Adminhtml\System\Config;
 use Magento\Backend\Block\Widget\Button as WidgetButton;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
-use Opengento\PasswordLessLogin\Model\Email;
+use Opengento\PasswordLessLogin\Enum\Config;
 
 class Button extends Field
 {
@@ -21,7 +21,7 @@ class Button extends Field
      */
     protected function _getElementHtml(AbstractElement $element): string
     {
-        $value = $this->_scopeConfig->getValue(Email::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY);
+        $value = $this->_scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value);
         $element->setType('password')->setValue($value)->setReadonly(true);
         $html = parent::_getElementHtml($element);
         return $html . $this->getButtonHtml() . $this->getJs($element);
@@ -48,7 +48,7 @@ class Button extends Field
      */
     protected function getJs(AbstractElement $element): string
     {
-        $url = $this->getUrl('passwordlesslogin/system_config/secretkey');
+        $url = $this->getUrl(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY_URL->value);
         return '
             <script>
                 require(["jquery", "domReady!"], function($) {

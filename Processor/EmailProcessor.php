@@ -15,7 +15,7 @@ use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
-use Opengento\PasswordLessLogin\Model\Email;
+use Opengento\PasswordLessLogin\Enum\Config;
 use Opengento\PasswordLessLogin\Model\LoginRequest;
 use Opengento\PasswordLessLogin\Service\Request\Encryption;
 use Psr\Log\LoggerInterface;
@@ -58,9 +58,9 @@ class EmailProcessor
     {
         try {
 
-            $templateId = $this->scopeConfig->getValue(Email::XML_PATH_PASSWORDLESSLOGIN_TEMPLATE_ID);
-            $fromEmail = $this->scopeConfig->getValue(Email::XML_PATH_PASSWORDLESSLOGIN_SENDER_EMAIL);
-            $fromName = $this->scopeConfig->getValue(Email::XML_PATH_PASSWORDLESSLOGIN_SENDER_NAME);
+            $templateId = $this->scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_TEMPLATE_ID->value);
+            $fromEmail = $this->scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SENDER_EMAIL->value);
+            $fromName = $this->scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SENDER_NAME->value);
 
             $accountData = $this->getAccountDataByEmail($to);
             $requestEmail = $accountData->getEmail();
@@ -70,7 +70,7 @@ class EmailProcessor
             $templateVars = [
                 'request' => $this->encryptionService->encrypt(
                     $data,
-                    $this->scopeConfig->getValue(Email::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY)
+                    $this->scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value)
                 )
             ];
 
