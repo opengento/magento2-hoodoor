@@ -7,12 +7,16 @@ declare(strict_types=1);
 
 namespace Opengento\PasswordLessLogin\Processor;
 
+use Magento\Backend\App\Area\FrontNameResolver;
+use Magento\Email\Model\BackendTemplate;
+use Magento\Email\Model\Template;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Store\Model\Store;
 use Magento\Store\Model\StoreManagerInterface;
 use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
 use Opengento\PasswordLessLogin\Enum\Config;
@@ -52,9 +56,10 @@ class EmailProcessor
 
     /**
      * @param string $to
+     * @param string $type
      * @return void
      */
-    public function sendMail(string $to): void
+    public function sendMail(string $to, string $type): void
     {
         try {
 
@@ -68,25 +73,24 @@ class EmailProcessor
 
             $data = sprintf('email/%s/token/%s', $requestEmail, $requestToken);
             $templateVars = [
+                'type' => $type,
                 'request' => $this->encryptionService->encrypt(
                     $data,
                     $this->scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value)
                 )
             ];
 
-            $storeId = $this->storeManager->getStore()->getId();
-
             $this->inlineTranslation->suspend();
 
             $storeScope = ScopeInterface::SCOPE_STORE;
 
-            $templateOptions = [
-                'area' => Area::AREA_FRONTEND,
-                'store' => $storeId
-            ];
-
-            $transport = $this->transportBuilder->setTemplateIdentifier($templateId)
-                ->setTemplateOptions($templateOptions)
+            $transport = $this->transportBuilder
+                ->setTemplateIdentifier($templateId)
+                ->setTemplateModel($type === 'admin' ? BackendTemplate::class : Template::class)
+                ->setTemplateOptions([
+                    'area' => $type === 'admin' ? Area::AREA_ADMINHTML : Area::AREA_FRONTEND,
+                    'store' => Store::DEFAULT_STORE_ID
+                ])
                 ->setTemplateVars($templateVars)
                 ->setFromByScope(
                     [

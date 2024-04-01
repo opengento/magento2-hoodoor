@@ -8,6 +8,9 @@
                 <sender_email>admin@opengento.fr</sender_email>
                 <sender_name>Opengento</sender_name>
             </email>
+            <security>
+                <max_time_expiration>+15 minutes</max_time_expiration>
+            </security>
         </passwordlesslogin>
     </default>
 </config>

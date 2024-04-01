@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
-        <route id="passwordlesslogin" frontName="passwordlesslogin">
-            <module name="Opengento_PasswordLessLogin"/>
+        <route id="adminhtml" frontName="admin">
+            <module name="Opengento_PasswordLessLogin" before="Magento_Backend"/>
         </route>
     </router>
 </config>

@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Service\Account;
+namespace Opengento\PasswordLessLogin\Service\Customer;
 
 use Magento\Customer\Api\AccountManagementInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
@@ -49,7 +49,7 @@ class Login
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\State\InputMismatchException
      */
-    public function process(array $data): void
+    public function perform(array $data): void
     {
         // Set new password each time you need to login
         $customer = $this->customerRepository->get($data['email']);

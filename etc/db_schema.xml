@@ -7,10 +7,11 @@
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-    <table name="customer_login_request_queue" resource="default" engine="innodb" comment="Customer Registration">
+    <table name="login_request_queue" resource="default" engine="innodb" comment="Customer Registration">
         <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
                 comment="Entity ID"/>
         <column xsi:type="varchar" name="email" nullable="false" length="255" comment="Login Email"/>
+        <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Login Type"/>
         <column xsi:type="varchar" name="token" nullable="false" length="255" comment="Login Token"/>
         <column xsi:type="boolean" name="is_used" nullable="false" default="0" comment="Login Is Used"/>
         <column xsi:type="timestamp" name="expires_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Registration Expiration Date"/>

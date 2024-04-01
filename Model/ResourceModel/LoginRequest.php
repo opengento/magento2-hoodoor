@@ -17,7 +17,7 @@ class LoginRequest extends AbstractDb
      */
     protected function _construct(): void
     {
-        $this->_init('customer_login_request_queue', 'entity_id');
+        $this->_init('login_request_queue', 'entity_id');
     }
 
     /**

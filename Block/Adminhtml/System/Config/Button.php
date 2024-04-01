@@ -48,7 +48,7 @@ class Button extends Field
      */
     protected function getJs(AbstractElement $element): string
     {
-        $url = $this->getUrl(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY_URL->value);
+        $url = $this->getUrl(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value);
         return '
             <script>
                 require(["jquery", "domReady!"], function($) {

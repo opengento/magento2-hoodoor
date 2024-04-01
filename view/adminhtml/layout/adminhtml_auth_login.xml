@@ -7,13 +7,13 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="content">
-            <referenceBlock name="customer_form_login">
+        <referenceContainer name="login.content">
+            <referenceBlock name="admin.login">
                 <action method="setTemplate">
                     <argument name="template" xsi:type="helper" helper="Opengento\PasswordLessLogin\Model\Template\Manager::getTemplate">
-                        <param name="default">Magento_Customer::form/login.phtml</param>
-                        <param name="override">Opengento_PasswordLessLogin::form/login.phtml</param>
-                        <param name="type">customer</param>
+                        <param name="default">Magento_Backend::admin/login.phtml</param>
+                        <param name="override">Opengento_PasswordLessLogin::admin/login.phtml</param>
+                        <param name="type">admin</param>
                     </argument>
                 </action>
                 <arguments>

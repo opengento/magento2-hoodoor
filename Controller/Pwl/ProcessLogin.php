@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Controller\Account;
+namespace Opengento\PasswordLessLogin\Controller\Pwl;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -15,14 +15,14 @@ use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
 use Opengento\PasswordLessLogin\Enum\Config;
 use Opengento\PasswordLessLogin\Exception\RequestException;
-use Opengento\PasswordLessLogin\Service\Account\Login as LoginService;
+use Opengento\PasswordLessLogin\Service\Customer\Login as LoginService;
 use Opengento\PasswordLessLogin\Service\Request\Encryption as EncryptionService;
 
 class ProcessLogin implements HttpGetActionInterface
 {
     /**
      * @param \Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface $loginRequestRepository
-     * @param \Opengento\PasswordLessLogin\Service\Account\Login $loginService
+     * @param \Opengento\PasswordLessLogin\Service\Customer\Login $loginService
      * @param \Opengento\PasswordLessLogin\Service\Request\Encryption $encryptionService
      * @param \Magento\Framework\App\RequestInterface $request
      * @param \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
@@ -60,10 +60,10 @@ class ProcessLogin implements HttpGetActionInterface
                         if ($request->getToken() === $params['token']) {
                             if ($request->hasBeenUsed() || $request->hasExpired()) {
                                 $this->messageManager->addErrorMessage(__('Unable to execute request. Please try again.'));
-                                return $redirect->setPath('customer/account/login');
+                                return $redirect->setPath('*/account/login');
                             }
                             $this->loginRequestRepository->lock($request);
-                            $this->loginService->process($params);
+                            $this->loginService->perform($params);
                             $this->loginRequestRepository->delete($request);
                         } else {
                             throw new RequestException(_('Invalid request. Please try again.'));
@@ -78,6 +78,6 @@ class ProcessLogin implements HttpGetActionInterface
                 $this->messageManager->addErrorMessage($e->getMessage());
             }
         }
-        return $redirect->setPath('customer/account');
+        return $redirect->setPath('*/account');
     }
 }

@@ -8,8 +8,7 @@
 
 /**
  * @var \Magento\Customer\Block\Form\Login $block
- * @var \Magento\Customer\ViewModel\LoginButton $loginButtonViewModel
- * @var \Opengento\PasswordLessLogin\ViewModel\Account $loginViewModel
+ * @var \Opengento\PasswordLessLogin\ViewModel\Request\Login $loginViewModel
  * @var \Magento\Framework\Escaper $escaper
  */
 
@@ -18,7 +17,7 @@ $loginViewModel = $block->getData('login_view_model');
 ?>
 <div class="block block-customer-login">
     <div class="block-title">
-        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Registered Customers')) ?></strong>
+        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $escaper->escapeHtml(__('Registered Customers')) ?></strong>
     </div>
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <form class="form form-login"
@@ -27,15 +26,15 @@ $loginViewModel = $block->getData('login_view_model');
               id="login-form"
               data-mage-init='{"validation":{}}'>
             <?= $block->getBlockHtml('formkey') ?>
-            <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+            <fieldset class="fieldset login" data-hasrequired="<?= $escaper->escapeHtml(__('* Required Fields')) ?>">
                 <div class="field note"><?= $block->escapeHtml(__('If you have an account, sign in with your email address.')) ?></div>
                 <div class="field email required">
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
                     <div class="control">
-                        <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>"
+                        <input name="login[username]" value="<?= $escaper->escapeHtmlAttr($block->getUsername()) ?>"
                             <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>
                                id="email" type="email" class="input-text"
-                               title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                               title="<?= $escaper->escapeHtmlAttr((__('Email'))) ?>"
                                data-mage-init='{"mage/trim-input":{}}'
                                data-validate="{required:true, 'validate-email':true}">
                     </div>
@@ -49,7 +48,7 @@ $loginViewModel = $block->getData('login_view_model');
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
                                 </svg>
                             </span>
-                            <span><?= $block->escapeHtml(__('Send Magic Link')) ?></span>
+                            <span><?= $escaper->escapeHtml(__('Send Magic Link')) ?></span>
                         </button>
                     </div>
                 </div>

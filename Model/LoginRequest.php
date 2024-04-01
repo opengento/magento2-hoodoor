@@ -16,7 +16,7 @@ class LoginRequest extends AbstractModel
      */
     public function _construct(): void
     {
-        $this->_init(\Opengento\PasswordLessLogin\Model\ResourceModel\LoginRequest::class);
+        $this->_init(ResourceModel\LoginRequest::class);
     }
 
     /**
@@ -26,6 +26,15 @@ class LoginRequest extends AbstractModel
     public function setEmail(string $email): LoginRequest
     {
         return $this->setData('email', $email);
+    }
+
+    /**
+     * @param string $type
+     * @return \Opengento\PasswordLessLogin\Model\LoginRequest
+     */
+    public function setType(string $type): LoginRequest
+    {
+        return $this->setData('type', $type);
     }
 
     /**
@@ -61,6 +70,14 @@ class LoginRequest extends AbstractModel
     public function getEmail(): ?string
     {
         return $this->getData('email');
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getType(): ?string
+    {
+        return $this->getData('type');
     }
 
     /**
@@ -102,14 +119,5 @@ class LoginRequest extends AbstractModel
     public function hasBeenUsed(): bool
     {
         return $this->getIsUsed() !== "0";
-    }
-
-    /**
-     * @param string $token
-     * @return bool
-     */
-    public function isValidToken(string $token): bool
-    {
-        return $this->getToken() === $token;
     }
 }

@@ -40,7 +40,7 @@ bin/magento setup:upgrade
 
 ## Settings
 
-The configuration for this module is available in `Stores > Configuration > Customer > PasswordLess Login`.
+The configuration for this module is available in `Stores > Configuration > OpenGento > PasswordLess Login`.
 
 Make sure you have generated a secret key.
 
@@ -48,6 +48,13 @@ Make sure you have generated a secret key.
 
 The module is compatible with Magento 2 version 2.4.6-p4.
 
+You can choose to enable the functionality on the Magento frontend or backend. To activate one or the other, modify the values in the settings.
+
+By default, the authentication token is valid 15 minutes after the email is sent. You can change this value in the settings. Refer to the PHP documentation to modify the expiration value: [DateTime Documentation](https://www.php.net/manual/fr/class.datetime.php)
+
+A security layer has been added to provide a high level of protection for data transmitted by the HTTP protocol.
+
+In order to process the request, a private key must be generated in the settings. Without it, it will be difficult to read the request to connect.
 ## Support
 
 Raise a new [request](https://github.com/opengento/magento2-passwordless-login/issues) to the issue tracker.
