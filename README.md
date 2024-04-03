@@ -1,9 +1,9 @@
 # Module for Magento 2
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-module)
+[![Latest Stable Version](https://img.shields.io/packagist/v/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-passwordless-login)
 [![License: MIT](https://img.shields.io/github/license/opengento/magento2-passwordless-login.svg?style=flat-square)](./LICENSE)
-[![Packagist](https://img.shields.io/packagist/dt/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-module/stats)
-[![Packagist](https://img.shields.io/packagist/dm/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-module/stats)
+[![Packagist](https://img.shields.io/packagist/dt/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-passwordless-login/stats)
+[![Packagist](https://img.shields.io/packagist/dm/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-passwordless-login/stats)
 
 This module allows to you login without a password and without using a third-party service.
 
