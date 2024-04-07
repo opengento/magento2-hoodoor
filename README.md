@@ -46,15 +46,24 @@ Make sure you have generated a secret key.
 
 ## Documentation
 
-The module is compatible with Magento 2 version 2.4.6-p4.
+### Compatibility and Activation:
 
-You can choose to enable the functionality on the Magento frontend or backend. To activate one or the other, modify the values in the settings.
+This module is compatible with Magento 2 version 2.4.6-p4. 
 
-By default, the authentication token is valid 15 minutes after the email is sent. You can change this value in the settings. Refer to the PHP documentation to modify the expiration value: [DateTime Documentation](https://www.php.net/manual/fr/class.datetime.php)
+You have the flexibility to enable its functionality either on the Magento frontend or backend. To activate either option, adjust the corresponding values in the config settings.
 
-A security layer has been added to provide a high level of protection for data transmitted by the HTTP protocol.
+### Token Expiration and Customization:
 
-In order to process the request, a private key must be generated in the settings. Without it, it will be difficult to read the request to connect.
+By default, the authentication token remains valid for 15 minutes after the email is sent. However, you have the option to customize this duration according to your requirements. Refer to the PHP documentation on how to modify the datetime value.
+
+### Enhanced Security Measures:
+
+We have implemented a robust security layer to ensure a high level of protection for the data transmitted via the HTTP protocol.
+
+### Private Key Generation:
+
+To process requests securely, it is essential to generate a private key in the settings. This private key serves as a crucial component for decrypting and authenticating requests. Failure to provide this key may hinder the ability to decipher and establish connections effectively.
+
 ## Support
 
 Raise a new [request](https://github.com/opengento/magento2-hoodoor-login/issues) to the issue tracker.
