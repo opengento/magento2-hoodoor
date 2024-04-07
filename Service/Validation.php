@@ -5,16 +5,16 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Service;
+namespace Opengento\Hoodoor\Service;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
-use Opengento\PasswordLessLogin\Model\Admin\User;
+use Opengento\Hoodoor\Model\Admin\User;
 
 class Validation
 {
     /**
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
-     * @param \Opengento\PasswordLessLogin\Model\Admin\User $user
+     * @param \Opengento\Hoodoor\Model\Admin\User $user
      */
     public function __construct(
         protected readonly CustomerRepositoryInterface $customerRepository,

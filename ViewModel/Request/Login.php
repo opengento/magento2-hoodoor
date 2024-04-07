@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\ViewModel\Request;
+namespace Opengento\Hoodoor\ViewModel\Request;
 
 use Magento\Backend\Model\UrlInterface as BackendUrlInterface;
 use Magento\Framework\App\Area;

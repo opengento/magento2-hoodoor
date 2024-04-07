@@ -5,17 +5,17 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Service;
+namespace Opengento\Hoodoor\Service;
 
 use Magento\Framework\Message\Manager;
-use Opengento\PasswordLessLogin\Processor\EmailProcessor;
+use Opengento\Hoodoor\Processor\EmailProcessor;
 
 class Queue
 {
     /**
-     * @param \Opengento\PasswordLessLogin\Service\Request $requestService
+     * @param \Opengento\Hoodoor\Service\Request $requestService
      * @param \Magento\Framework\Message\Manager $messageManager
-     * @param \Opengento\PasswordLessLogin\Processor\EmailProcessor $emailProcessor
+     * @param \Opengento\Hoodoor\Processor\EmailProcessor $emailProcessor
      */
     public function __construct(
         protected readonly Request $requestService,

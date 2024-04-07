@@ -2,15 +2,15 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <passwordlesslogin>
+        <hoodoor>
             <email>
-                <template_id>passwordless_login</template_id>
+                <template_id>login</template_id>
                 <sender_email>admin@opengento.fr</sender_email>
                 <sender_name>Opengento</sender_name>
             </email>
             <security>
                 <max_time_expiration>+15 minutes</max_time_expiration>
             </security>
-        </passwordlesslogin>
+        </hoodoor>
     </default>
 </config>

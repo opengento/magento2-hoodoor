@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Model\ResourceModel\Admin;
+namespace Opengento\Hoodoor\Model\ResourceModel\Admin;
 
 class User extends \Magento\User\Model\ResourceModel\User
 {

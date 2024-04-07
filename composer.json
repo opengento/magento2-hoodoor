@@ -1,6 +1,6 @@
 {
-    "name": "opengento/module-passwordless-login",
-    "description": "This module allows to you login without a password and without using a third-party service.",
+    "name": "opengento/module-hoodoor",
+    "description": "This module enables you to log in without a password and without relying on a third-party service.",
     "keywords": [
         "php",
         "magento",
@@ -22,7 +22,7 @@
     "license": [
         "MIT"
     ],
-    "homepage": "https://github.com/opengento/magento2-passwordless-login",
+    "homepage": "https://github.com/opengento/magento2-hoodoor",
     "authors": [
         {
             "name": "Opengento Team",
@@ -32,15 +32,15 @@
         }
     ],
     "support": {
-        "source": "https://github.com/opengento/magento2-passwordless-login",
-        "issues": "https://github.com/opengento/magento2-passwordless-login/issues"
+        "source": "https://github.com/opengento/magento2-hoodoor",
+        "issues": "https://github.com/opengento/magento2-hoodoor/issues"
     },
     "autoload": {
         "files": [
             "registration.php"
         ],
         "psr-4": {
-            "Opengento\\PasswordLessLogin\\": ""
+            "Opengento\\Hoodoor\\": ""
         }
     }
 }

@@ -8,11 +8,11 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <referenceBlock name="customer_edit" template="Opengento_PasswordLessLogin::form/edit.phtml">
+            <referenceBlock name="customer_edit" template="Opengento_Hoodoor::form/edit.phtml">
                 <action method="setTemplate">
-                    <argument name="template" xsi:type="helper" helper="Opengento\PasswordLessLogin\Model\Template\Manager::getTemplate">
+                    <argument name="template" xsi:type="helper" helper="Opengento\Hoodoor\Model\Template\Manager::getTemplate">
                         <param name="default">Magento_Backend::form/edit.phtml</param>
-                        <param name="override">Opengento_PasswordLessLogin::form/edit.phtml</param>
+                        <param name="override">Opengento_Hoodoor::form/edit.phtml</param>
                         <param name="type">customer</param>
                     </argument>
                 </action>

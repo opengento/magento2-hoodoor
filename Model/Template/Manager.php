@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Model\Template;
+namespace Opengento\Hoodoor\Model\Template;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Opengento\PasswordLessLogin\Enum\Config;
+use Opengento\Hoodoor\Enum\Config;
 
 class Manager
 {
@@ -28,9 +28,9 @@ class Manager
      */
     public function getTemplate(string $default, string $override, string $type): string
     {
-        $enable = $this->scopeConfig->isSetFlag(Config::XML_PATH_PASSWORDLESSLOGIN_ENABLE_FRONTEND->value);
+        $enable = $this->scopeConfig->isSetFlag(Config::XML_PATH_HOODOOR_ENABLE_FRONTEND->value);
         if ($type === 'admin') {
-            $enable = $this->scopeConfig->isSetFlag(Config::XML_PATH_PASSWORDLESSLOGIN_ENABLE_ADMIN->value);
+            $enable = $this->scopeConfig->isSetFlag(Config::XML_PATH_HOODOOR_ENABLE_ADMIN->value);
         }
         return $enable ? $override : $default;
     }

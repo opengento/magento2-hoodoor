@@ -5,15 +5,15 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Enum;
+namespace Opengento\Hoodoor\Enum;
 
 enum Config: string
 {
-    case XML_PATH_PASSWORDLESSLOGIN_ENABLE_ADMIN = 'passwordlesslogin/general/enable_admin';
-    case XML_PATH_PASSWORDLESSLOGIN_ENABLE_FRONTEND = 'passwordlesslogin/general/enable_frontend';
-    case XML_PATH_PASSWORDLESSLOGIN_TEMPLATE_ID = 'passwordlesslogin/email/template_id';
-    case XML_PATH_PASSWORDLESSLOGIN_SENDER_EMAIL = 'passwordlesslogin/email/sender_email';
-    case XML_PATH_PASSWORDLESSLOGIN_SENDER_NAME = 'passwordlesslogin/email/sender_name';
-    case XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY = 'passwordlesslogin/security/secret_key';
-    case XML_PATH_PASSWORDLESSLOGIN_MAX_TIME_EXPIRATION = 'passwordlesslogin/security/max_time_expiration';
+    case XML_PATH_HOODOOR_ENABLE_ADMIN = 'hoodoor/general/enable_admin';
+    case XML_PATH_HOODOOR_ENABLE_FRONTEND = 'hoodoor/general/enable_frontend';
+    case XML_PATH_HOODOOR_TEMPLATE_ID = 'hoodoor/email/template_id';
+    case XML_PATH_HOODOOR_SENDER_EMAIL = 'hoodoor/email/sender_email';
+    case XML_PATH_HOODOOR_SENDER_NAME = 'hoodoor/email/sender_name';
+    case XML_PATH_HOODOOR_SECRET_KEY = 'hoodoor/security/secret_key';
+    case XML_PATH_HOODOOR_MAX_TIME_EXPIRATION = 'hoodoor/security/max_time_expiration';
 }

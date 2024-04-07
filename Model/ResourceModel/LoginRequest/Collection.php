@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Model\ResourceModel\LoginRequest;
+namespace Opengento\Hoodoor\Model\ResourceModel\LoginRequest;
 
 use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
@@ -22,8 +22,8 @@ class Collection extends AbstractCollection
     protected function _construct(): void
     {
         $this->_init(
-            \Opengento\PasswordLessLogin\Model\LoginRequest::class,
-            \Opengento\PasswordLessLogin\Model\ResourceModel\LoginRequest::class
+            \Opengento\Hoodoor\Model\LoginRequest::class,
+            \Opengento\Hoodoor\Model\ResourceModel\LoginRequest::class
         );
     }
 }

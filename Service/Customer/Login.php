@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Service\Customer;
+namespace Opengento\Hoodoor\Service\Customer;
 
 use Magento\Customer\Api\AccountManagementInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;

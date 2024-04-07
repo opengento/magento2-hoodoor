@@ -5,25 +5,25 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Service;
+namespace Opengento\Hoodoor\Service;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Math\Random;
 use Magento\Framework\Message\Manager as MessageManager;
-use Opengento\PasswordLessLogin\Enum\Config;
-use Opengento\PasswordLessLogin\Model\LoginRequestFactory;
-use Opengento\PasswordLessLogin\Model\LoginRequestRepository;
-use Opengento\PasswordLessLogin\Processor\EmailProcessor;
+use Opengento\Hoodoor\Enum\Config;
+use Opengento\Hoodoor\Model\LoginRequestFactory;
+use Opengento\Hoodoor\Model\LoginRequestRepository;
+use Opengento\Hoodoor\Processor\EmailProcessor;
 use Psr\Log\LoggerInterface;
 
 class Request
 {
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Opengento\PasswordLessLogin\Model\LoginRequestFactory $loginRequestFactory
-     * @param \Opengento\PasswordLessLogin\Model\LoginRequestRepository $loginRequestRepository
-     * @param \Opengento\PasswordLessLogin\Service\Validation $validationService
-     * @param \Opengento\PasswordLessLogin\Processor\EmailProcessor $emailProcessor
+     * @param \Opengento\Hoodoor\Model\LoginRequestFactory $loginRequestFactory
+     * @param \Opengento\Hoodoor\Model\LoginRequestRepository $loginRequestRepository
+     * @param \Opengento\Hoodoor\Service\Validation $validationService
+     * @param \Opengento\Hoodoor\Processor\EmailProcessor $emailProcessor
      * @param \Magento\Framework\Message\Manager $messageManager
      * @param \Psr\Log\LoggerInterface $logger
      */
@@ -51,7 +51,7 @@ class Request
             if ($isValid) {
                 $dateTime = new \DateTime();
                 $maxTimeExpiration = $this->scopeConfig
-                    ->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_MAX_TIME_EXPIRATION->value);
+                    ->getValue(Config::XML_PATH_HOODOOR_MAX_TIME_EXPIRATION->value);
                 $loginRequest = $this->loginRequestFactory->create();
                 $loginRequest->setEmail($email)
                     ->setType($type)

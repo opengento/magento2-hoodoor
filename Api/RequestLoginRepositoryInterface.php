@@ -5,9 +5,9 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Api;
+namespace Opengento\Hoodoor\Api;
 
-use Opengento\PasswordLessLogin\Model\LoginRequest;
+use Opengento\Hoodoor\Model\LoginRequest;
 
 interface RequestLoginRepositoryInterface
 {
@@ -24,19 +24,19 @@ interface RequestLoginRepositoryInterface
     public function getById(string $id): LoginRequest;
 
     /**
-     * @param \Opengento\PasswordLessLogin\Model\LoginRequest $model
+     * @param \Opengento\Hoodoor\Model\LoginRequest $model
      * @return bool
      */
     public function save(LoginRequest $model): bool;
 
     /**
-     * @param \Opengento\PasswordLessLogin\Model\LoginRequest $model
+     * @param \Opengento\Hoodoor\Model\LoginRequest $model
      * @return bool
      */
     public function delete(LoginRequest $model): bool;
 
     /**
-     * @param \Opengento\PasswordLessLogin\Model\LoginRequest $model
+     * @param \Opengento\Hoodoor\Model\LoginRequest $model
      * @return bool
      */
     public function lock(LoginRequest $model): bool;

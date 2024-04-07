@@ -5,10 +5,10 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Service\Request;
+namespace Opengento\Hoodoor\Service\Request;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Opengento\PasswordLessLogin\Enum\Config;
+use Opengento\Hoodoor\Enum\Config;
 
 class Encryption
 {
@@ -28,7 +28,7 @@ class Encryption
     public function __construct(
         protected readonly ScopeConfigInterface $scopeConfig
     ) {
-        $this->secretKey = $this->scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value) ?: "";
+        $this->secretKey = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SECRET_KEY->value) ?: "";
     }
 
     /**

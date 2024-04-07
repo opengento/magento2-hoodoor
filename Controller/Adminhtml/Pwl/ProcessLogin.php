@@ -5,25 +5,25 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Controller\Adminhtml\Pwl;
+namespace Opengento\Hoodoor\Controller\Adminhtml\Pwl;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\Manager as MessageManager;
-use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
-use Opengento\PasswordLessLogin\Enum\Config;
-use Opengento\PasswordLessLogin\Exception\RequestException;
-use Opengento\PasswordLessLogin\Service\Admin\Login as LoginService;
-use Opengento\PasswordLessLogin\Service\Request\Encryption as EncryptionService;
+use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
+use Opengento\Hoodoor\Enum\Config;
+use Opengento\Hoodoor\Exception\RequestException;
+use Opengento\Hoodoor\Service\Admin\Login as LoginService;
+use Opengento\Hoodoor\Service\Request\Encryption as EncryptionService;
 
 class ProcessLogin implements HttpGetActionInterface
 {
     /**
-     * @param \Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface $loginRequestRepository
-     * @param \Opengento\PasswordLessLogin\Service\Admin\Login $adminLoginService
-     * @param \Opengento\PasswordLessLogin\Service\Request\Encryption $encryptionService
+     * @param \Opengento\Hoodoor\Api\RequestLoginRepositoryInterface $loginRequestRepository
+     * @param \Opengento\Hoodoor\Service\Admin\Login $adminLoginService
+     * @param \Opengento\Hoodoor\Service\Request\Encryption $encryptionService
      * @param \Magento\Framework\App\RequestInterface $request
      * @param \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
      * @param \Magento\Framework\Message\Manager $messageManager
@@ -50,7 +50,7 @@ class ProcessLogin implements HttpGetActionInterface
         if ($params) {
             try {
                 if (isset($params['request'])) {
-                    $secretKey = $this->scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value);
+                    $secretKey = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SECRET_KEY->value);
                     $decryptedData = $this->encryptionService->decrypt($params['request'], $secretKey);
                     $params = explode("/", $decryptedData);
                     $params = array_chunk($params, 2);

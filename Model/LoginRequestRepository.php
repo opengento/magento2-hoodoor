@@ -5,13 +5,13 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Model;
+namespace Opengento\Hoodoor\Model;
 
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface;
-use Opengento\PasswordLessLogin\Model\ResourceModel\LoginRequest as LoginRequestResource;
+use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
+use Opengento\Hoodoor\Model\ResourceModel\LoginRequest as LoginRequestResource;
 
 class LoginRequestRepository implements RequestLoginRepositoryInterface
 {
@@ -82,7 +82,7 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
     }
 
     /**
-     * @param \Opengento\PasswordLessLogin\Model\LoginRequest $model
+     * @param \Opengento\Hoodoor\Model\LoginRequest $model
      * @return bool
      */
     public function lock(LoginRequest $model): bool

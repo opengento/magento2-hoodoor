@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Exception;
+namespace Opengento\Hoodoor\Exception;
 
 class RequestException extends \Exception
 {

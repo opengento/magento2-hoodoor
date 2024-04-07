@@ -5,12 +5,12 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Block\Adminhtml\System\Config;
+namespace Opengento\Hoodoor\Block\Adminhtml\System\Config;
 
 use Magento\Backend\Block\Widget\Button as WidgetButton;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\Data\Form\Element\AbstractElement;
-use Opengento\PasswordLessLogin\Enum\Config;
+use Opengento\Hoodoor\Enum\Config;
 
 class Button extends Field
 {
@@ -21,7 +21,7 @@ class Button extends Field
      */
     protected function _getElementHtml(AbstractElement $element): string
     {
-        $value = $this->_scopeConfig->getValue(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value);
+        $value = $this->_scopeConfig->getValue(Config::XML_PATH_HOODOOR_SECRET_KEY->value);
         $element->setType('password')->setValue($value)->setReadonly(true);
         $html = parent::_getElementHtml($element);
         return $html . $this->getButtonHtml() . $this->getJs($element);
@@ -48,7 +48,7 @@ class Button extends Field
      */
     protected function getJs(AbstractElement $element): string
     {
-        $url = $this->getUrl(Config::XML_PATH_PASSWORDLESSLOGIN_SECRET_KEY->value);
+        $url = $this->getUrl(Config::XML_PATH_HOODOOR_SECRET_KEY->value);
         return '
             <script>
                 require(["jquery", "domReady!"], function($) {

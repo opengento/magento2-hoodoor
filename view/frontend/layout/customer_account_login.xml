@@ -10,15 +10,15 @@
         <referenceContainer name="content">
             <referenceBlock name="customer_form_login">
                 <action method="setTemplate">
-                    <argument name="template" xsi:type="helper" helper="Opengento\PasswordLessLogin\Model\Template\Manager::getTemplate">
+                    <argument name="template" xsi:type="helper" helper="Opengento\Hoodoor\Model\Template\Manager::getTemplate">
                         <param name="default">Magento_Customer::form/login.phtml</param>
-                        <param name="override">Opengento_PasswordLessLogin::form/login.phtml</param>
+                        <param name="override">Opengento_Hoodoor::form/login.phtml</param>
                         <param name="type">customer</param>
                     </argument>
                 </action>
                 <arguments>
                     <argument name="login_view_model" xsi:type="object">
-                        Opengento\PasswordLessLogin\ViewModel\Request\Login
+                        Opengento\Hoodoor\ViewModel\Request\Login
                     </argument>
                 </arguments>
             </referenceBlock>

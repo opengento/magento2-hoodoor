@@ -5,14 +5,14 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Controller\Adminhtml\Pwl;
+namespace Opengento\Hoodoor\Controller\Adminhtml\Pwl;
 
 use Magento\Backend\Block\Admin\Formkey;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\Manager as MessageManager;
-use Opengento\PasswordLessLogin\Service\Queue;
+use Opengento\Hoodoor\Service\Queue;
 
 class RequestLogin implements HttpPostActionInterface
 {
@@ -21,7 +21,7 @@ class RequestLogin implements HttpPostActionInterface
      * @param \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
      * @param \Magento\Framework\Message\Manager $messageManager
      * @param \Magento\Backend\Block\Admin\Formkey $formKey
-     * @param \Opengento\PasswordLessLogin\Service\Queue $queueService
+     * @param \Opengento\Hoodoor\Service\Queue $queueService
      */
     public function __construct(
         protected readonly RequestInterface $request,

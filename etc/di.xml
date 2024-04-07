@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Opengento\PasswordLessLogin\Api\RequestLoginRepositoryInterface"
-                type="Opengento\PasswordLessLogin\Model\LoginRequestRepository" />
+    <preference for="Opengento\Hoodoor\Api\RequestLoginRepositoryInterface"
+                type="Opengento\Hoodoor\Model\LoginRequestRepository" />
     <type name="Magento\Customer\Model\AccountManagement">
         <plugin name="account_plugin"
-                type="Opengento\PasswordLessLogin\Plugin\Model\AccountManagement"/>
+                type="Opengento\Hoodoor\Plugin\Model\AccountManagement"/>
     </type>
 </config>

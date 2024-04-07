@@ -1,0 +1,90 @@
+<?php
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+
+/** @var \Magento\Customer\Block\Form\Register $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+
+/** @var Magento\Customer\Helper\Address $addressHelper */
+$addressHelper = $block->getData('addressHelper');
+/** @var \Magento\Directory\Helper\Data $directoryHelper */
+$directoryHelper = $block->getData('directoryHelper');
+/** @var \Magento\Customer\ViewModel\Address\RegionProvider $regionProvider */
+$regionProvider = $block->getRegionProvider();
+$formData = $block->getFormData();
+?>
+<?= $block->getChildHtml('form_fields_before') ?>
+<?php /* Extensions placeholder */ ?>
+<?= $block->getChildHtml('customer.form.register.extra') ?>
+<form class="form create account form-create-account"
+      action="<?= $escaper->escapeUrl($block->getPostActionUrl()) ?>"
+      method="post"
+      id="form-validate"
+      enctype="multipart/form-data"
+      data-mage-init='{"validation":{}}'
+      autocomplete="off">
+    <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>
+    <fieldset class="fieldset create info">
+        <legend class="legend"><span><?= $escaper->escapeHtml(__('Personal Information')) ?></span></legend><br>
+        <input type="hidden" name="success_url" value="<?= $escaper->escapeUrl($block->getSuccessUrl()) ?>">
+        <input type="hidden" name="error_url" value="<?= $escaper->escapeUrl($block->getErrorUrl()) ?>">
+        <?= $block->getLayout()
+            ->createBlock(\Magento\Customer\Block\Widget\Name::class)
+            ->setObject($formData)
+            ->setForceUseCustomerAttributes(true)
+            ->toHtml() ?>
+    </fieldset>
+    <fieldset class="fieldset create account"
+              data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>">
+        <legend class="legend"><span><?= $escaper->escapeHtml(__('Sign-in Information')) ?></span></legend><br>
+        <div class="field required">
+            <label for="email_address" class="label"><span><?= $escaper->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input type="email"
+                       name="email"
+                       autocomplete="email"
+                       id="email_address"
+                       value="<?= $escaper->escapeHtmlAttr($formData->getEmail()) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Email')) ?>"
+                       class="input-text"
+                       data-mage-init='{"mage/trim-input":{}}'
+                       data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="fieldset additional_info">
+        <?= $block->getChildHtml('form_additional_info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit"
+                    class="action submit primary"
+                    title="<?= $escaper->escapeHtmlAttr(__('Create an Account')) ?>"
+                    id="send2"
+                <?php if ($block->getButtonLockManager()->isDisabled('customer_create_form_submit')): ?>
+                    disabled="disabled"
+                <?php endif; ?>>
+                <span><?= $escaper->escapeHtml(__('Create an Account')) ?></span>
+            </button>
+        </div>
+        <div class="secondary">
+            <a class="action back"
+               href="<?= $escaper->escapeUrl($block->getBackUrl()) ?>">
+                <span><?= $escaper->escapeHtml(__('Back')) ?></span>
+            </a>
+        </div>
+    </div>
+</form>
+<?php // phpcs:ignore Magento2.Legacy.PhtmlTemplate ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "form-validate"
+            }
+        }
+    }
+</script>

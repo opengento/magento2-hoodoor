@@ -9,7 +9,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="adminhtml" frontName="admin">
-            <module name="Opengento_PasswordLessLogin" before="Magento_Backend"/>
+            <module name="Opengento_Hoodoor" before="Magento_Backend"/>
         </route>
     </router>
 </config>

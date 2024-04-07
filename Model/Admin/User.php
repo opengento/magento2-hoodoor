@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Model\Admin;
+namespace Opengento\Hoodoor\Model\Admin;
 
 use Magento\Framework\App\DeploymentConfig;
 use Magento\Framework\Serialize\Serializer\Json;
@@ -17,7 +17,7 @@ class User extends \Magento\User\Model\User
     protected $serializer;
 
     /**
-     * @param \Opengento\PasswordLessLogin\Model\ResourceModel\Admin\User $resourceModel
+     * @param \Opengento\Hoodoor\Model\ResourceModel\Admin\User $resourceModel
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\User\Helper\Data $userData
@@ -36,7 +36,7 @@ class User extends \Magento\User\Model\User
      * @param \Magento\User\Model\Spi\NotificatorInterface|null $notificator
      */
     public function __construct(
-        protected readonly \Opengento\PasswordLessLogin\Model\ResourceModel\Admin\User $resourceModel,
+        protected readonly \Opengento\Hoodoor\Model\ResourceModel\Admin\User $resourceModel,
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\User\Helper\Data $userData,

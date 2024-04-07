@@ -6,4 +6,4 @@
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Opengento_PasswordLessLogin', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Opengento_Hoodoor', __DIR__);

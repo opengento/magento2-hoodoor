@@ -25,7 +25,7 @@ Magento 2 Open Source or Commerce edition is required.
 Run the following composer command:
 
 ```
-composer require opengento/module-passwordless-login
+composer require opengento/module-hoodoor-login
 ```
 
 ### Setup the module
@@ -40,7 +40,7 @@ bin/magento setup:upgrade
 
 ## Settings
 
-The configuration for this module is available in `Stores > Configuration > OpenGento > PasswordLess Login`.
+The configuration for this module is available in `Stores > Configuration > OpenGento > Hoodoor`.
 
 Make sure you have generated a secret key.
 
@@ -57,7 +57,7 @@ A security layer has been added to provide a high level of protection for data t
 In order to process the request, a private key must be generated in the settings. Without it, it will be difficult to read the request to connect.
 ## Support
 
-Raise a new [request](https://github.com/opengento/magento2-passwordless-login/issues) to the issue tracker.
+Raise a new [request](https://github.com/opengento/magento2-hoodoor-login/issues) to the issue tracker.
 
 ## Authors
 

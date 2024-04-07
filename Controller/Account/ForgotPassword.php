@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Controller\Account;
+namespace Opengento\Hoodoor\Controller\Account;
 
 class ForgotPassword extends \Magento\Customer\Controller\Account\ForgotPassword
 {

@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Model\ResourceModel;
+namespace Opengento\Hoodoor\Model\ResourceModel;
 
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
@@ -24,7 +24,7 @@ class LoginRequest extends AbstractDb
      * @param \Magento\Framework\Model\AbstractModel $object
      * @param $value
      * @param $field
-     * @return $this|\Opengento\PasswordLessLogin\Model\ResourceModel\LoginRequest
+     * @return $this|\Opengento\Hoodoor\Model\ResourceModel\LoginRequest
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function load(AbstractModel $object, $value, $field = null): LoginRequest|static

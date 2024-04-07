@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Plugin\Model;
+namespace Opengento\Hoodoor\Plugin\Model;
 
 class AccountManagement
 {

@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Service\Admin;
+namespace Opengento\Hoodoor\Service\Admin;
 
 use Magento\Backend\Model\Auth;
 use Magento\Framework\App\ActionFlag;
@@ -16,13 +16,13 @@ use Magento\Framework\Exception\AuthenticationException;
 use Magento\Framework\Math\Random;
 use Magento\Framework\Message\Manager;
 use Magento\Framework\UrlInterface;
-use Opengento\PasswordLessLogin\Model\Admin\User;
+use Opengento\Hoodoor\Model\Admin\User;
 use Psr\Log\LoggerInterface;
 
 class Login
 {
     /**
-     * @param \Opengento\PasswordLessLogin\Model\Admin\User $user
+     * @param \Opengento\Hoodoor\Model\Admin\User $user
      * @param \Magento\Framework\Math\Random $random
      * @param \Magento\Framework\UrlInterface $url
      * @param \Magento\Framework\App\ResponseInterface $response
@@ -68,7 +68,7 @@ class Login
 
     /**
      * @param array $data
-     * @return \Opengento\PasswordLessLogin\Model\Admin\User|null
+     * @return \Opengento\Hoodoor\Model\Admin\User|null
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function getBackendUser(array $data): ?User

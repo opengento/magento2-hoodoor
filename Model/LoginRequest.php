@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\PasswordLessLogin\Model;
+namespace Opengento\Hoodoor\Model;
 
 use Magento\Framework\Model\AbstractModel;
 
@@ -21,7 +21,7 @@ class LoginRequest extends AbstractModel
 
     /**
      * @param string $email
-     * @return \Opengento\PasswordLessLogin\Model\LoginRequest
+     * @return \Opengento\Hoodoor\Model\LoginRequest
      */
     public function setEmail(string $email): LoginRequest
     {
@@ -30,7 +30,7 @@ class LoginRequest extends AbstractModel
 
     /**
      * @param string $type
-     * @return \Opengento\PasswordLessLogin\Model\LoginRequest
+     * @return \Opengento\Hoodoor\Model\LoginRequest
      */
     public function setType(string $type): LoginRequest
     {
@@ -39,7 +39,7 @@ class LoginRequest extends AbstractModel
 
     /**
      * @param string $token
-     * @return \Opengento\PasswordLessLogin\Model\LoginRequest
+     * @return \Opengento\Hoodoor\Model\LoginRequest
      */
     public function setToken(string $token): LoginRequest
     {
@@ -48,7 +48,7 @@ class LoginRequest extends AbstractModel
 
     /**
      * @param int $isUsed
-     * @return \Opengento\PasswordLessLogin\Model\LoginRequest
+     * @return \Opengento\Hoodoor\Model\LoginRequest
      */
     public function setIsUsed(int $isUsed): LoginRequest
     {
@@ -57,7 +57,7 @@ class LoginRequest extends AbstractModel
 
     /**
      * @param \DateTime $expiresAt
-     * @return \Opengento\PasswordLessLogin\Model\LoginRequest
+     * @return \Opengento\Hoodoor\Model\LoginRequest
      */
     public function setExpiresAt(\DateTime $expiresAt): LoginRequest
     {
