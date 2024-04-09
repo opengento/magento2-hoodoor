@@ -40,8 +40,34 @@ use Opengento\Hoodoor\Service\Password;
  */
 class CreatePost extends CoreCreatePost implements CsrfAwareActionInterface, HttpPostActionInterface
 {
+    /**
+     * @var string
+     */
     private string $password = "";
 
+    /**
+     * @param \Opengento\Hoodoor\Service\Password $passwordService
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Magento\Customer\Model\Session $customerSession
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Customer\Api\AccountManagementInterface $accountManagement
+     * @param \Magento\Customer\Helper\Address $addressHelper
+     * @param \Magento\Framework\UrlFactory $urlFactory
+     * @param \Magento\Customer\Model\Metadata\FormFactory $formFactory
+     * @param \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory
+     * @param \Magento\Customer\Api\Data\RegionInterfaceFactory $regionDataFactory
+     * @param \Magento\Customer\Api\Data\AddressInterfaceFactory $addressDataFactory
+     * @param \Magento\Customer\Api\Data\CustomerInterfaceFactory $customerDataFactory
+     * @param \Magento\Customer\Model\Url $customerUrl
+     * @param \Magento\Customer\Model\Registration $registration
+     * @param \Magento\Framework\Escaper $escaper
+     * @param \Magento\Customer\Model\CustomerExtractor $customerExtractor
+     * @param \Magento\Framework\Api\DataObjectHelper $dataObjectHelper
+     * @param \Magento\Customer\Model\Account\Redirect $accountRedirect
+     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
+     * @param \Magento\Framework\Data\Form\FormKey\Validator|null $formKeyValidator
+     */
     public function __construct(
         protected readonly Password $passwordService,
         Context $context,
