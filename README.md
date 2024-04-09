@@ -1,11 +1,11 @@
 # Module for Magento 2
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-passwordless-login)
-[![License: MIT](https://img.shields.io/github/license/opengento/magento2-passwordless-login.svg?style=flat-square)](./LICENSE)
-[![Packagist](https://img.shields.io/packagist/dt/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-passwordless-login/stats)
-[![Packagist](https://img.shields.io/packagist/dm/opengento/module-passwordless-login.svg?style=flat-square)](https://packagist.org/packages/opengento/module-passwordless-login/stats)
+[![Latest Stable Version](https://img.shields.io/packagist/v/opengento/module-hoodoor.svg?style=flat-square)](https://packagist.org/packages/opengento/module-hoodoor)
+[![License: MIT](https://img.shields.io/github/license/opengento/magento2-hoodoor.svg?style=flat-square)](./LICENSE)
+[![Packagist](https://img.shields.io/packagist/dt/opengento/module-hoodoor.svg?style=flat-square)](https://packagist.org/packages/opengento/module-hoodoor/stats)
+[![Packagist](https://img.shields.io/packagist/dm/opengento/module-hoodoor.svg?style=flat-square)](https://packagist.org/packages/opengento/module-hoodoor/stats)
 
-This module allows to you login without a password and without using a third-party service.
+This module provides a top-notch security for your customers' accounts by adopting a passwordless approach, effectively removing the vulnerability of weak passwords from your database. This instills a sense of confidence and reliability in your platform among your customers.
 
 - [Setup](#setup)
     - [Composer installation](#composer-installation)
@@ -25,7 +25,7 @@ Magento 2 Open Source or Commerce edition is required.
 Run the following composer command:
 
 ```
-composer require opengento/module-hoodoor-login
+composer require opengento/module-hoodoor
 ```
 
 ### Setup the module
