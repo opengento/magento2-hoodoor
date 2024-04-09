@@ -56,10 +56,7 @@ $formData = $block->getFormData();
             <button type="submit"
                     class="action submit primary"
                     title="<?= $escaper->escapeHtmlAttr(__('Create an Account')) ?>"
-                    id="send2"
-                <?php if ($block->getButtonLockManager()->isDisabled('customer_create_form_submit')): ?>
-                    disabled="disabled"
-                <?php endif; ?>>
+                    id="send2">
                 <span><?= $escaper->escapeHtml(__('Create an Account')) ?></span>
             </button>
         </div>
