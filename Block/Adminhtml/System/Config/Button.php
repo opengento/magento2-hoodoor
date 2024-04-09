@@ -48,19 +48,11 @@ class Button extends Field
      */
     protected function getJs(AbstractElement $element): string
     {
-        $url = $this->getUrl(Config::XML_PATH_HOODOOR_SECRET_KEY->value);
         return '
             <script>
                 require(["jquery", "domReady!"], function($) {
                     $("#generate_secret_key").click(function() {
-                        $.ajax({
-                            url: "'. $url .'",
-                            type: "get",
-                            dataType: "json",
-                            success: function (data) {
-                                $("#' . $element->getHtmlId() . '").val(data.secret_key);
-                            }
-                        });
+                      $("#' . $element->getHtmlId() . '").val(window.crypto.randomUUID());
                     })
                 })
             </script>
