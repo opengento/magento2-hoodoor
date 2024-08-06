@@ -14,12 +14,14 @@ class Password
     /**
      * @param \Magento\Framework\Math\Random $random
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly Random $random
     ) {
     }
 
     /**
+     * Generate Unique Hash
+     *
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function generate(): string

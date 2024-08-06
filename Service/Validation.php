@@ -16,15 +16,20 @@ class Validation
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param \Opengento\Hoodoor\Model\Admin\User $user
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly CustomerRepositoryInterface $customerRepository,
         protected readonly User $user
     ) {
     }
 
     /**
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * Customer Validation
+     *
+     * @param string $email
+     * @param string $type
+     * @return bool
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function validate(string $email, string $type): bool
     {

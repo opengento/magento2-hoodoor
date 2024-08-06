@@ -5,12 +5,15 @@
  * See COPYING.txt for license details.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <referenceBlock class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml">
+            <referenceBlock class="Magento\Customer\Block\Form\Register" name="customer_form_register"
+                            template="Magento_Customer::form/register.phtml">
                 <action method="setTemplate">
-                    <argument name="template" xsi:type="helper" helper="Opengento\Hoodoor\Model\Template\Manager::getTemplate">
+                    <argument name="template" xsi:type="helper"
+                              helper="Opengento\Hoodoor\Model\Template\Manager::getTemplate">
                         <param name="default">Magento_Customer::form/register.phtml</param>
                         <param name="override">Opengento_Hoodoor::form/register.phtml</param>
                         <param name="type">customer</param>

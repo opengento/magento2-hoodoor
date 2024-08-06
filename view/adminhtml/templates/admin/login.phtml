@@ -4,7 +4,6 @@
  * See LICENSE bundled with this library for license details.
  */
 
-
 /**
  * @var \Magento\Framework\View\Element\AbstractBlock $block
  * @var \Opengento\Hoodoor\ViewModel\Request\Login $viewModel
@@ -14,7 +13,12 @@
 $viewModel = $block->getData('login_view_model');
 ?>
 
-<form method="post" action="<?= $escaper->escapeHtmlAttr($viewModel->getPostActionUrl()) ?>" id="login-form" data-mage-init='{"validation": {}}' autocomplete="off">
+<form method="post"
+      action="<?= $escaper->escapeHtmlAttr($viewModel->getPostActionUrl()) ?>"
+      id="login-form"
+      data-mage-init='{"validation": {}}'
+      autocomplete="off"
+>
     <fieldset class="admin__fieldset">
         <legend class="admin__legend">
             <span><?= $escaper->escapeHtml(__('Welcome, please sign in')) ?></span>
@@ -37,6 +41,7 @@ $viewModel = $block->getData('login_view_model');
             </div>
         </div>
         <?= $block->getChildHtml('form.additional.info') ?>
+        <?php // @codingStandardsIgnoreStart ?>
         <div class="form-actions">
             <div class="actions">
                 <button type="submit" class="action-login action-primary">
@@ -49,5 +54,6 @@ $viewModel = $block->getData('login_view_model');
                 </button>
             </div>
         </div>
+        <?php // @codingStandardsIgnoreEnd ?>
     </fieldset>
 </form>

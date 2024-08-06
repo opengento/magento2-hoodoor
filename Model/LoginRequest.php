@@ -12,6 +12,8 @@ use Magento\Framework\Model\AbstractModel;
 class LoginRequest extends AbstractModel
 {
     /**
+     * Construct
+     *
      * @return void
      */
     public function _construct(): void
@@ -20,6 +22,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Set Email
+     *
      * @param string $email
      * @return \Opengento\Hoodoor\Model\LoginRequest
      */
@@ -29,6 +33,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Set Type
+     *
      * @param string $type
      * @return \Opengento\Hoodoor\Model\LoginRequest
      */
@@ -38,6 +44,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Set Token
+     *
      * @param string $token
      * @return \Opengento\Hoodoor\Model\LoginRequest
      */
@@ -47,6 +55,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Set Is Used
+     *
      * @param int $isUsed
      * @return \Opengento\Hoodoor\Model\LoginRequest
      */
@@ -56,6 +66,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Set Expires At
+     *
      * @param \DateTime $expiresAt
      * @return \Opengento\Hoodoor\Model\LoginRequest
      */
@@ -65,6 +77,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Get Email
+     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -73,6 +87,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Get Type
+     *
      * @return string|null
      */
     public function getType(): ?string
@@ -81,6 +97,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Get Token
+     *
      * @return string|null
      */
     public function getToken(): ?string
@@ -89,6 +107,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Get Is Used
+     *
      * @return string|null
      */
     public function getIsUsed(): ?string
@@ -97,6 +117,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Get Expires At
+     *
      * @return string|null
      */
     public function getExpiresAt(): ?string
@@ -105,6 +127,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Has Expired
+     *
      * @return bool
      */
     public function hasExpired(): bool
@@ -114,6 +138,8 @@ class LoginRequest extends AbstractModel
     }
 
     /**
+     * Has Been Used
+     *
      * @return bool
      */
     public function hasBeenUsed(): bool

@@ -17,7 +17,7 @@ class Queue
      * @param \Magento\Framework\Message\Manager $messageManager
      * @param \Opengento\Hoodoor\Processor\EmailProcessor $emailProcessor
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly Request $requestService,
         protected readonly Manager $messageManager,
         protected readonly EmailProcessor $emailProcessor
@@ -25,6 +25,8 @@ class Queue
     }
 
     /**
+     * Add Request To Queue
+     *
      * @param array $params
      * @param string $type
      * @return true

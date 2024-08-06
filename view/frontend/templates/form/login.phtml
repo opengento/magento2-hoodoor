@@ -27,9 +27,9 @@ $loginViewModel = $block->getData('login_view_model');
               data-mage-init='{"validation":{}}'>
             <?= $block->getBlockHtml('formkey') ?>
             <fieldset class="fieldset login" data-hasrequired="<?= $escaper->escapeHtml(__('* Required Fields')) ?>">
-                <div class="field note"><?= $block->escapeHtml(__('If you have an account, sign in with your email address.')) ?></div>
+                <div class="field note"><?= $escaper->escapeHtml(__('If you have an account, sign in with your email address.')) ?></div>
                 <div class="field email required">
-                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <label class="label" for="email"><span><?= $escaper->escapeHtml(__('Email')) ?></span></label>
                     <div class="control">
                         <input name="login[username]" value="<?= $escaper->escapeHtmlAttr($block->getUsername()) ?>"
                             <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>

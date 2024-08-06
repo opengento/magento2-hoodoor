@@ -14,12 +14,11 @@ use Magento\Customer\Model\Customer\CredentialsValidator;
 use Magento\Customer\Model\CustomerRegistry;
 use Magento\Customer\Model\Session;
 use Magento\Framework\Encryption\Encryptor;
+use Magento\Framework\Stdlib\Cookie\CookieMetadataFactory;
+use Magento\Framework\Stdlib\Cookie\PhpCookieManager;
 
 class Login
 {
-    private $cookieMetadataManager;
-
-    private $cookieMetadataFactory;
 
     /**
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
@@ -29,6 +28,8 @@ class Login
      * @param \Magento\Framework\Encryption\Encryptor $encryptor
      * @param \Magento\Customer\Api\SessionCleanerInterface $sessionCleaner
      * @param \Magento\Customer\Model\Session $session
+     * @param \Magento\Framework\Stdlib\Cookie\CookieMetadataFactory $cookieMetadataFactory
+     * @param \Magento\Framework\Stdlib\Cookie\PhpCookieManager $cookieMetadataManager
      */
     public function __construct(
         protected readonly CustomerRepositoryInterface $customerRepository,
@@ -37,11 +38,15 @@ class Login
         protected readonly CustomerRegistry $customerRegistry,
         protected readonly Encryptor $encryptor,
         protected readonly SessionCleanerInterface $sessionCleaner,
-        protected readonly Session $session
+        protected readonly Session $session,
+        protected readonly CookieMetadataFactory $cookieMetadataFactory,
+        protected readonly PhpCookieManager $cookieMetadataManager
     ) {
     }
 
     /**
+     * Perform Login
+     *
      * @param array $data
      * @return void
      * @throws \Magento\Framework\Exception\InputException
@@ -69,37 +74,33 @@ class Login
     }
 
     /**
-     * @param $password
+     * Create Password Hash
+     *
+     * @param string $password
      * @return string
      */
-    private function createPasswordHash($password): string
+    private function createPasswordHash(string $password): string
     {
         return $this->encryptor->getHash($password, true);
     }
 
     /**
-     * @return \Magento\Framework\Stdlib\Cookie\PhpCookieManager|mixed
+     * Get Cookie Manager
+     *
+     * @return \Magento\Framework\Stdlib\Cookie\PhpCookieManager
      */
-    private function getCookieManager(): mixed
+    private function getCookieManager(): PhpCookieManager
     {
-        if (!$this->cookieMetadataManager) {
-            $this->cookieMetadataManager = \Magento\Framework\App\ObjectManager::getInstance()->get(
-                \Magento\Framework\Stdlib\Cookie\PhpCookieManager::class
-            );
-        }
         return $this->cookieMetadataManager;
     }
 
     /**
-     * @return \Magento\Framework\Stdlib\Cookie\CookieMetadataFactory|mixed
+     * Get Cookie Metadata Factory
+     *
+     * @return \Magento\Framework\Stdlib\Cookie\CookieMetadataFactory
      */
-    private function getCookieMetadataFactory(): mixed
+    private function getCookieMetadataFactory(): CookieMetadataFactory
     {
-        if (!$this->cookieMetadataFactory) {
-            $this->cookieMetadataFactory = \Magento\Framework\App\ObjectManager::getInstance()->get(
-                \Magento\Framework\Stdlib\Cookie\CookieMetadataFactory::class
-            );
-        }
         return $this->cookieMetadataFactory;
     }
 }

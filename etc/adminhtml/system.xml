@@ -18,35 +18,42 @@
             <resource>Opengento_Hoodoor::config</resource>
             <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General</label>
-                <field id="enable_admin" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="enable_admin" type="select" translate="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
                     <label>Enable Admin</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="enable_frontend" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="enable_frontend" type="select" translate="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
                     <label>Enable Frontend</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
             <group id="email" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Email</label>
-                <field id="template_id" type="text" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="template_id" type="text" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
                     <label>Template</label>
                 </field>
-                <field id="sender_email" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="sender_email" type="text" translate="label" sortOrder="20" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
                     <label>Sender Email</label>
                 </field>
-                <field id="sender_name" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="sender_name" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
                     <label>Sender Name</label>
                 </field>
             </group>
             <group id="security" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Security</label>
-                <field id="secret_key" type="password" translate="label" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="secret_key" type="password" translate="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
                     <label>Secret Key</label>
                     <frontend_model>Opengento\Hoodoor\Block\Adminhtml\System\Config\Button</frontend_model>
                     <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
-                <field id="max_time_expiration" type="text" translate="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="max_time_expiration" type="text" translate="label" sortOrder="20" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
                     <label>Request Expiration</label>
                     <comment>Set the max. time before the request expires. (E.g: +15 minutes)</comment>
                 </field>

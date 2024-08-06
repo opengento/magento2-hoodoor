@@ -15,15 +15,25 @@ use Opengento\Hoodoor\Model\ResourceModel\LoginRequest as LoginRequestResource;
 
 class LoginRequestRepository implements RequestLoginRepositoryInterface
 {
-    public function __construct(
+    /**
+     * Construct
+     *
+     * @param \Opengento\Hoodoor\Model\LoginRequestFactory $loginRequestFactory
+     * @param \Opengento\Hoodoor\Model\ResourceModel\LoginRequest $loginRequestResource
+     */
+    public function __construct( //phpcs:ignore
         protected readonly LoginRequestFactory $loginRequestFactory,
         protected readonly LoginRequestResource $loginRequestResource
     ) {
     }
 
     /**
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * Get Login Request
+     *
+     * @param string $email
+     * @return \Opengento\Hoodoor\Model\LoginRequest
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function get(string $email): LoginRequest
     {
@@ -36,8 +46,12 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
     }
 
     /**
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * Get Login Request By Id
+     *
+     * @param string $id
+     * @return \Opengento\Hoodoor\Model\LoginRequest
      * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getById(string $id): LoginRequest
     {
@@ -50,7 +64,11 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
     }
 
     /**
-     * @throws \Exception
+     * Save Login Request
+     *
+     * @param \Opengento\Hoodoor\Model\LoginRequest $model
+     * @return bool
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
      */
     public function save(LoginRequest $model): bool
     {
@@ -66,7 +84,11 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
     }
 
     /**
-     * @throws \Exception
+     * Delete Login Request
+     *
+     * @param \Opengento\Hoodoor\Model\LoginRequest $model
+     * @return bool
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     public function delete(LoginRequest $model): bool
     {
@@ -82,6 +104,8 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
     }
 
     /**
+     * Lock Login Request
+     *
      * @param \Opengento\Hoodoor\Model\LoginRequest $model
      * @return bool
      */

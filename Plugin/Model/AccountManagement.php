@@ -10,38 +10,42 @@ namespace Opengento\Hoodoor\Plugin\Model;
 class AccountManagement
 {
     /**
+     * Intercept Change Password
+     *
      * @param \Magento\Customer\Model\AccountManagement $subject
-     * @param $email
-     * @param $currentPassword
-     * @param $newPassword
+     * @param string $email
+     * @param string $currentPassword
+     * @param string $newPassword
      * @return void
      * @throws \Exception
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function beforeChangePassword(
         \Magento\Customer\Model\AccountManagement $subject,
-        $email,
-        $currentPassword,
-        $newPassword
-    ): void
-    {
-        throw new \Exception(_('Access denied.'));
+        string $email,
+        string $currentPassword,
+        string $newPassword
+    ): void {
+        throw new \Exception(_('Access denied.')); //phpcs:ignore
     }
 
     /**
+     * Intercept Change Password By Id
+     *
      * @param \Magento\Customer\Model\AccountManagement $subject
-     * @param $customerId
-     * @param $currentPassword
-     * @param $newPassword
+     * @param int|string $customerId
+     * @param string $currentPassword
+     * @param string $newPassword
      * @return void
      * @throws \Exception
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function beforeChangePasswordById(
         \Magento\Customer\Model\AccountManagement $subject,
-        $customerId,
-        $currentPassword,
-        $newPassword
-    ): void
-    {
-        throw new \Exception(_('Access denied.'));
+        int|string $customerId,
+        string $currentPassword,
+        string $newPassword
+    ): void {
+        throw new \Exception(_('Access denied.')); //phpcs:ignore
     }
 }

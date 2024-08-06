@@ -13,6 +13,8 @@ use Opengento\Hoodoor\Enum\Config;
 class Manager
 {
     /**
+     * Construct
+     *
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
@@ -21,6 +23,8 @@ class Manager
     }
 
     /**
+     * Get Template
+     *
      * @param string $default
      * @param string $override
      * @param string $type

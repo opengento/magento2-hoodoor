@@ -7,4 +7,8 @@
         <plugin name="account_plugin"
                 type="Opengento\Hoodoor\Plugin\Model\AccountManagement"/>
     </type>
+    <preference for="Opengento\Hoodoor\Controller\Account\ForgotPassword"
+                type="Magento\Customer\Controller\Account\ForgotPassword" />
+    <preference for="Opengento\Hoodoor\Controller\Account\ForgotPasswordPost"
+                type="Magento\Customer\Controller\Account\ForgotPasswordPost" />
 </config>

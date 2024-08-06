@@ -41,7 +41,7 @@ class EmailProcessor
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Opengento\Hoodoor\Service\Request\Encryption $encryptionService
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly RequestLoginRepositoryInterface $loginRequestRepository,
         protected readonly ScopeConfigInterface $scopeConfig,
         protected readonly TransportBuilder $transportBuilder,
@@ -55,6 +55,8 @@ class EmailProcessor
     }
 
     /**
+     * Send Mail
+     *
      * @param string $to
      * @param string $type
      * @return void
@@ -62,7 +64,6 @@ class EmailProcessor
     public function sendMail(string $to, string $type): void
     {
         try {
-
             $templateId = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_TEMPLATE_ID->value);
             $fromEmail = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SENDER_EMAIL->value);
             $fromName = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SENDER_NAME->value);
@@ -112,6 +113,8 @@ class EmailProcessor
     }
 
     /**
+     * Get Account Data By Email
+     *
      * @param string $email
      * @return \Opengento\Hoodoor\Model\LoginRequest
      */

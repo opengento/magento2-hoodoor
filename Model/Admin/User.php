@@ -9,12 +9,16 @@ namespace Opengento\Hoodoor\Model\Admin;
 
 use Magento\Framework\App\DeploymentConfig;
 use Magento\Framework\Serialize\Serializer\Json;
+use Magento\Framework\Serialize\SerializerInterface;
 use Magento\User\Model\Spi\NotificatorInterface;
 use Magento\User\Model\UserValidationRules;
 
 class User extends \Magento\User\Model\User
 {
-    protected $serializer;
+    /**
+     * @var \Magento\Framework\Serialize\SerializerInterface
+     */
+    protected SerializerInterface $serializer;
 
     /**
      * @param \Opengento\Hoodoor\Model\ResourceModel\Admin\User $resourceModel
@@ -75,6 +79,10 @@ class User extends \Magento\User\Model\User
     }
 
     /**
+     * Load Admin User By Email
+     *
+     * @param string $email
+     * @return $this
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function loadByEmail(string $email): static

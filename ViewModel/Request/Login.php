@@ -16,11 +16,13 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 class Login implements ArgumentInterface
 {
     /**
+     * Construct
+     *
      * @param \Magento\Framework\UrlInterface $urlFrontend
      * @param \Magento\Backend\Model\UrlInterface $urlBackend
      * @param \Magento\Framework\App\State $state
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly FrontendUrlInterface $urlFrontend,
         protected readonly BackendUrlInterface $urlBackend,
         protected readonly State $state
@@ -28,6 +30,8 @@ class Login implements ArgumentInterface
     }
 
     /**
+     * Get Post Action Url
+     *
      * @return string
      * @throws \Magento\Framework\Exception\LocalizedException
      */
@@ -35,7 +39,7 @@ class Login implements ArgumentInterface
     {
         $areaCode = $this->state->getAreaCode();
 
-        if($areaCode === Area::AREA_ADMINHTML) {
+        if ($areaCode === Area::AREA_ADMINHTML) {
             return $this->urlBackend->getUrl('admin/pwl/requestlogin');
         }
 

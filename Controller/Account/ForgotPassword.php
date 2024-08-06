@@ -17,6 +17,6 @@ class ForgotPassword extends \Magento\Customer\Controller\Account\ForgotPassword
     public function execute()
     {
         $this->messageManager->addErrorMessage(__('Access denied.'));
-        return $this->_redirect('customer/account/login');
+        return $this->_redirect('customer/account');
     }
 }

@@ -25,9 +25,10 @@ class Request
      * @param \Opengento\Hoodoor\Service\Validation $validationService
      * @param \Opengento\Hoodoor\Processor\EmailProcessor $emailProcessor
      * @param \Magento\Framework\Message\Manager $messageManager
+     * @param \Magento\Framework\Math\Random $random
      * @param \Psr\Log\LoggerInterface $logger
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly ScopeConfigInterface $scopeConfig,
         protected readonly LoginRequestFactory $loginRequestFactory,
         protected readonly LoginRequestRepository $loginRequestRepository,
@@ -40,6 +41,8 @@ class Request
     }
 
     /**
+     * Create Login Request
+     *
      * @param string $email
      * @param string $type
      * @return false

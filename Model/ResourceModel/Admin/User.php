@@ -13,11 +13,11 @@ class User extends \Magento\User\Model\ResourceModel\User
     /**
      * Load data by specified email
      *
-     * @param $email
+     * @param string $email
      * @return array|bool
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function loadByEmail($email): bool|array
+    public function loadByEmail(string $email): bool|array
     {
         $connection = $this->getConnection();
 

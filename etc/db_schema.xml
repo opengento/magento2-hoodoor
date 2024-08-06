@@ -14,7 +14,8 @@
         <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Login Type"/>
         <column xsi:type="varchar" name="token" nullable="false" length="255" comment="Login Token"/>
         <column xsi:type="boolean" name="is_used" nullable="false" default="0" comment="Login Is Used"/>
-        <column xsi:type="timestamp" name="expires_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Registration Expiration Date"/>
+        <column xsi:type="timestamp" name="expires_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Registration Expiration Date"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>

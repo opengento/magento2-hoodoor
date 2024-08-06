@@ -68,14 +68,15 @@ class CreatePost extends CoreCreatePost implements CsrfAwareActionInterface, Htt
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param \Magento\Framework\Data\Form\FormKey\Validator|null $formKeyValidator
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly Password $passwordService,
         Context $context,
         Session $customerSession,
         ScopeConfigInterface $scopeConfig,
         StoreManagerInterface $storeManager,
         AccountManagementInterface $accountManagement,
-        Address $addressHelper, UrlFactory $urlFactory,
+        Address $addressHelper,
+        UrlFactory $urlFactory,
         FormFactory $formFactory,
         SubscriberFactory $subscriberFactory,
         RegionInterfaceFactory $regionDataFactory,
@@ -115,12 +116,14 @@ class CreatePost extends CoreCreatePost implements CsrfAwareActionInterface, Htt
     }
 
     /**
+     * Execute
+     *
      * @throws \Magento\Framework\Exception\NotFoundException
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function execute()
     {
-        if(!$this->password) {
+        if (!$this->password) {
             $this->password = $this->passwordService->generate();
         }
         $this->getRequest()->setParams([

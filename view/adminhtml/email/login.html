@@ -6,9 +6,8 @@
 -->
 <!--@subject {{trans "%store_name: Your Authentication Request" store_name=$store.frontend_name}} @-->
 <!--@vars {
-"var store.frontend_name":"Store Name"
-"var request.customer_entity_id":"Customer Id"
-"var request.token":"Customer Token"
+"var store.frontend_name":"Store Name",
+"var this.getUrl($store,'admin/pwl/processlogin',[_query:[request:$request],_nosid:1])":"Admin User Login Url"
 } @-->
 
 <p>{{trans "To authenticate, please click on the link below:"}}</p>

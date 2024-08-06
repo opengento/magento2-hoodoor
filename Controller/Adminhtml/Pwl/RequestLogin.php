@@ -23,7 +23,7 @@ class RequestLogin implements HttpPostActionInterface
      * @param \Magento\Backend\Block\Admin\Formkey $formKey
      * @param \Opengento\Hoodoor\Service\Queue $queueService
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly RequestInterface $request,
         protected readonly RedirectFactory $redirectFactory,
         protected readonly MessageManager $messageManager,
@@ -33,6 +33,8 @@ class RequestLogin implements HttpPostActionInterface
     }
 
     /**
+     * Execute
+     *
      * @return \Magento\Framework\Controller\Result\Redirect
      */
     public function execute()
@@ -47,12 +49,16 @@ class RequestLogin implements HttpPostActionInterface
                 return $redirect->setPath('*/*');
             }
             if (!isset($params['login']['username'])) {
-                $this->messageManager->addErrorMessage(__('You must enter a valid email address.'));
+                $this->messageManager->addErrorMessage(
+                    __('You must enter a valid email address.')
+                );
                 return $redirect->setPath('*/*');
             } else {
                 try {
                     $this->queueService->add($params, 'admin');
-                    $this->messageManager->addSuccessMessage(__('If an account exists, you will receive an email to proceed with your request.'));
+                    $this->messageManager->addSuccessMessage(
+                        __('If an account exists, you will receive an email to proceed with your request.')
+                    );
                 } catch (\Exception $e) {
                     $this->messageManager->addErrorMessage($e->getMessage());
                     return $redirect->setPath('*/*');

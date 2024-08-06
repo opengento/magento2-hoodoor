@@ -10,6 +10,8 @@ namespace Opengento\Hoodoor\Controller\Account;
 class Edit extends \Magento\Customer\Controller\Account\Edit
 {
     /**
+     * Execute
+     *
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\View\Result\Page
      */
     public function execute()

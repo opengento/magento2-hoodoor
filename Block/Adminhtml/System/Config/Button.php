@@ -15,6 +15,8 @@ use Opengento\Hoodoor\Enum\Config;
 class Button extends Field
 {
     /**
+     * Create Element Html (Button + Script)
+     *
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
      * @return string
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -28,21 +30,26 @@ class Button extends Field
     }
 
     /**
+     * Create Button Block
+     *
+     * @return string
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    protected function getButtonHtml()
+    protected function getButtonHtml(): string
     {
         $button = $this->getLayout()->createBlock(WidgetButton::class)
-            ->setData(array(
+            ->setData([
                 'id' => 'generate_secret_key',
                 'label' => __('Generate Secret Key'),
                 'class' => 'generate-secret-key-button'
-            ));
+            ]);
 
         return $button->toHtml();
     }
 
     /**
+     * Generate Secret Key Script
+     *
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
      * @return string
      */

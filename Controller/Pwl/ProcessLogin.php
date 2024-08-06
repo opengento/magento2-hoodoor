@@ -29,7 +29,7 @@ class ProcessLogin implements HttpGetActionInterface
      * @param \Magento\Framework\Message\Manager $messageManager
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly RequestLoginRepositoryInterface $loginRequestRepository,
         protected readonly LoginService $loginService,
         protected readonly EncryptionService $encryptionService,
@@ -41,9 +41,11 @@ class ProcessLogin implements HttpGetActionInterface
     }
 
     /**
+     * Execute
+     *
      * @return \Magento\Framework\Controller\Result\Redirect
      */
-    public function execute()
+    public function execute() // phpcs:ignore Generic.Metrics.NestingLevel.TooHigh
     {
         $redirect = $this->redirectFactory->create();
         $params = $this->request->getParams();
@@ -59,20 +61,22 @@ class ProcessLogin implements HttpGetActionInterface
                         $request = $this->loginRequestRepository->get($params['email']);
                         if ($request->getToken() === $params['token']) {
                             if ($request->hasBeenUsed() || $request->hasExpired()) {
-                                $this->messageManager->addErrorMessage(__('Unable to execute request. Please try again.'));
+                                $this->messageManager->addErrorMessage(
+                                    __('Unable to execute request. Please try again.')
+                                );
                                 return $redirect->setPath('*/account/login');
                             }
                             $this->loginRequestRepository->lock($request);
                             $this->loginService->perform($params);
                             $this->loginRequestRepository->delete($request);
                         } else {
-                            throw new RequestException(_('Invalid request. Please try again.'));
+                            throw new RequestException(_('Invalid request. Please try again.')); //phpcs:ignore
                         }
                     } else {
-                        throw new RequestException(_('Invalid request. Please try again.'));
+                        throw new RequestException(_('Invalid request. Please try again.')); //phpcs:ignore
                     }
                 } else {
-                    throw new RequestException(_('Invalid request. Please try again.'));
+                    throw new RequestException(_('Invalid request. Please try again.')); //phpcs:ignore
                 }
             } catch (\Exception $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());

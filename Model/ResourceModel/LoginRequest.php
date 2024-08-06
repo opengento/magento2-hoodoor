@@ -13,6 +13,8 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 class LoginRequest extends AbstractDb
 {
     /**
+     * Construct
+     *
      * @return void
      */
     protected function _construct(): void
@@ -21,15 +23,17 @@ class LoginRequest extends AbstractDb
     }
 
     /**
+     * Load Login Request
+     *
      * @param \Magento\Framework\Model\AbstractModel $object
-     * @param $value
-     * @param $field
+     * @param string $value
+     * @param string $field
      * @return $this|\Opengento\Hoodoor\Model\ResourceModel\LoginRequest
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function load(AbstractModel $object, $value, $field = null): LoginRequest|static
     {
-        if($field === 'email') {
+        if ($field === 'email') {
             $object->beforeLoad($value, $field);
             $connection = $this->getConnection();
             if ($connection && $value !== null) {

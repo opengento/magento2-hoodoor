@@ -31,7 +31,7 @@ class Login
      * @param \Magento\Backend\Model\Auth $auth
      * @param \Magento\Framework\Message\Manager $messageManager
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly User $user,
         protected readonly Random $random,
         protected readonly UrlInterface $url,
@@ -44,6 +44,8 @@ class Login
     }
 
     /**
+     * Perform Admin Login
+     *
      * @param \Magento\Framework\App\RequestInterface $request
      * @return void
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -52,7 +54,7 @@ class Login
     {
         $params = $request->getParams();
         $backendUser = $this->getBackendUser($params);
-        if($backendUser) {
+        if ($backendUser) {
             $password = $this->random->getUniqueHash();
             // Set new password each time you need to login
             $backendUser->setPassword($password);
@@ -67,6 +69,8 @@ class Login
     }
 
     /**
+     * Get Backend User
+     *
      * @param array $data
      * @return \Opengento\Hoodoor\Model\Admin\User|null
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -85,6 +89,8 @@ class Login
     }
 
     /**
+     * Process Not LoggedIn User
+     *
      * @param \Magento\Framework\App\RequestInterface $request
      * @return void
      */
@@ -120,6 +126,8 @@ class Login
     }
 
     /**
+     * Perform Login
+     *
      * @param \Magento\Framework\App\RequestInterface $request
      * @return bool
      */
@@ -144,6 +152,8 @@ class Login
     }
 
     /**
+     * Redirect If Needed After Login
+     *
      * @param \Magento\Framework\App\RequestInterface $request
      * @return bool
      */

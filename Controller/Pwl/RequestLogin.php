@@ -25,7 +25,7 @@ class RequestLogin implements HttpPostActionInterface
      * @param \Opengento\Hoodoor\Service\Request $requestService
      * @param \Opengento\Hoodoor\Service\Queue $queueService
      */
-    public function __construct(
+    public function __construct( //phpcs:ignore
         protected readonly RequestInterface $request,
         protected readonly RedirectFactory $redirectFactory,
         protected readonly MessageManager $messageManager,
@@ -36,6 +36,8 @@ class RequestLogin implements HttpPostActionInterface
     }
 
     /**
+     * Execute
+     *
      * @return \Magento\Framework\Controller\Result\Redirect
      */
     public function execute()
@@ -46,16 +48,22 @@ class RequestLogin implements HttpPostActionInterface
         if ($params) {
             $isFormKey = $this->formKey->isPresent();
             if (!$isFormKey) {
-                $this->messageManager->addErrorMessage(__('Invalid Form Key. Please refresh the page.'));
+                $this->messageManager->addErrorMessage(
+                    __('Invalid Form Key. Please refresh the page.')
+                );
                 return $redirect->setPath('*/*/login');
             }
             if (!isset($params['login']['username'])) {
-                $this->messageManager->addErrorMessage(__('You must enter a valid email address.'));
+                $this->messageManager->addErrorMessage(
+                    __('You must enter a valid email address.')
+                );
                 return $redirect->setPath('*/*/login');
             } else {
                 try {
                     $this->queueService->add($params, 'customer');
-                    $this->messageManager->addSuccessMessage(__('If a customer account exists, you will receive an email to proceed with your request.'));
+                    $this->messageManager->addSuccessMessage(
+                        __('If a customer account exists, you will receive an email to proceed with your request.')
+                    );
                 } catch (\Exception $e) {
                     $this->messageManager->addErrorMessage($e->getMessage());
                     return $redirect->setPath('*/*/login');
