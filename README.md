@@ -72,7 +72,7 @@ Raise a new [request](https://github.com/opengento/magento2-hoodoor-login/issues
 
 - **Opengento Community** - *Lead* - [![Twitter Follow](https://img.shields.io/twitter/follow/opengento.svg?style=social)](https://twitter.com/opengento)
 - **Ronan Guérin** - *Maintainer* - [![GitHub followers](https://img.shields.io/github/followers/ronangr1.svg?style=social)](https://github.com/ronangr1)
-- **Contributors** - *Contributor* - [![GitHub contributors](https://img.shields.io/github/contributors/opengento/magento2-store-path-url.svg?style=flat-square)](https://github.com/opengento/magento2-store-path-url/graphs/contributors)
+- **Contributors** - *Contributor* - [![GitHub contributors](https://img.shields.io/github/contributors/opengento/magento2-hoodoor.svg?style=flat-square)](https://github.com/opengento/magento2-store-path-url/graphs/contributors)
 
 ## License
 
