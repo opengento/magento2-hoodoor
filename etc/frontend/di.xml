@@ -6,4 +6,9 @@
             <argument name="session" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
         </arguments>
     </type>
+    <type name="Opengento\Hoodoor\Controller\Account\CreatePost">
+        <arguments>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session\Proxy</argument>
+        </arguments>
+    </type>
 </config>
