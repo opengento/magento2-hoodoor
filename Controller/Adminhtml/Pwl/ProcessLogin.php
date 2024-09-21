@@ -8,52 +8,36 @@ declare(strict_types=1);
 namespace Opengento\Hoodoor\Controller\Adminhtml\Pwl;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
-use Opengento\Hoodoor\Enum\Config;
 use Opengento\Hoodoor\Exception\RequestException;
 use Opengento\Hoodoor\Service\Admin\Login as LoginService;
 use Opengento\Hoodoor\Service\Request\Encryption as EncryptionService;
 
 class ProcessLogin implements HttpGetActionInterface
 {
-    /**
-     * @param \Opengento\Hoodoor\Api\RequestLoginRepositoryInterface $loginRequestRepository
-     * @param \Opengento\Hoodoor\Service\Admin\Login $adminLoginService
-     * @param \Opengento\Hoodoor\Service\Request\Encryption $encryptionService
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @param \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
-     * @param \Magento\Framework\Message\Manager $messageManager
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly RequestLoginRepositoryInterface $loginRequestRepository,
-        protected readonly LoginService $adminLoginService,
-        protected readonly EncryptionService $encryptionService,
-        protected readonly RequestInterface $request,
-        protected readonly RedirectFactory $redirectFactory,
-        protected readonly MessageManager $messageManager,
-        protected readonly ScopeConfigInterface $scopeConfig,
+    public function __construct(
+        private readonly RequestLoginRepositoryInterface $loginRequestRepository,
+        private readonly LoginService $adminLoginService,
+        private readonly EncryptionService $encryptionService,
+        private readonly RequestInterface $request,
+        private readonly RedirectFactory $redirectFactory,
+        private readonly MessageManager $messageManager
     ) {
     }
 
-    /**
-     * Execute
-     *
-     * @return \Magento\Framework\Controller\Result\Redirect
-     */
-    public function execute() // phpcs:ignore Generic.Metrics.NestingLevel.TooHigh
+    public function execute(): ResponseInterface|Redirect // phpcs:ignore Generic.Metrics.NestingLevel.TooHigh
     {
         $redirect = $this->redirectFactory->create();
         $params = $this->request->getParams();
         if ($params) {
             try {
                 if (isset($params['request'])) {
-                    $secretKey = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SECRET_KEY->value);
-                    $decryptedData = $this->encryptionService->decrypt($params['request'], $secretKey);
+                    $decryptedData = $this->encryptionService->decrypt($params['request']);
                     $params = explode("/", $decryptedData);
                     $params = array_chunk($params, 2);
                     $params = array_combine(array_column($params, 0), array_column($params, 1));
@@ -62,7 +46,7 @@ class ProcessLogin implements HttpGetActionInterface
                         if ($loginRequest->getToken() === $params['token']) {
                             if ($loginRequest->hasBeenUsed() || $loginRequest->hasExpired()) {
                                 $this->messageManager->addErrorMessage(
-                                    __('Unable to execute request. Please try again.')
+                                    __('Unable to execute the request. Please try again.')
                                 );
                                 return $redirect->setPath('*');
                             }
@@ -72,17 +56,17 @@ class ProcessLogin implements HttpGetActionInterface
                             $this->loginRequestRepository->delete($loginRequest);
                         } else {
                             throw new RequestException(
-                                _('Invalid request. Please try again.') // phpcs:ignore
+                                _('Invalid request. Please try again.')
                             );
                         }
                     } else {
                         throw new RequestException(
-                            _('Invalid request. Please try again.') // phpcs:ignore
+                            _('Invalid request. Please try again.')
                         );
                     }
                 } else {
                     throw new RequestException(
-                        _('Invalid request. Please try again.') // phpcs:ignore
+                        _('Invalid request. Please try again.')
                     );
                 }
             } catch (\Exception $e) {

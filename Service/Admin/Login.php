@@ -14,42 +14,25 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Exception\AuthenticationException;
 use Magento\Framework\Math\Random;
-use Magento\Framework\Message\Manager;
+use Magento\Framework\Message\Manager as MessageManager;
 use Magento\Framework\UrlInterface;
 use Opengento\Hoodoor\Model\Admin\User;
 use Psr\Log\LoggerInterface;
 
 class Login
 {
-    /**
-     * @param \Opengento\Hoodoor\Model\Admin\User $user
-     * @param \Magento\Framework\Math\Random $random
-     * @param \Magento\Framework\UrlInterface $url
-     * @param \Magento\Framework\App\ResponseInterface $response
-     * @param \Magento\Framework\App\ActionFlag $actionFlag
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Magento\Backend\Model\Auth $auth
-     * @param \Magento\Framework\Message\Manager $messageManager
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly User $user,
-        protected readonly Random $random,
-        protected readonly UrlInterface $url,
-        protected readonly ResponseInterface $response,
-        protected readonly ActionFlag $actionFlag,
-        protected readonly LoggerInterface $logger,
-        protected readonly Auth $auth,
-        protected readonly Manager $messageManager
+    public function __construct(
+        private readonly User $user,
+        private readonly Random $random,
+        private readonly UrlInterface $url,
+        private readonly ResponseInterface $response,
+        private readonly ActionFlag $actionFlag,
+        private readonly LoggerInterface $logger,
+        private readonly Auth $auth,
+        private readonly MessageManager $messageManager
     ) {
     }
 
-    /**
-     * Perform Admin Login
-     *
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @return void
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
     public function perform(RequestInterface $request): void
     {
         $params = $request->getParams();
@@ -68,17 +51,10 @@ class Login
         }
     }
 
-    /**
-     * Get Backend User
-     *
-     * @param array $data
-     * @return \Opengento\Hoodoor\Model\Admin\User|null
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    protected function getBackendUser(array $data): ?User
+    private function getBackendUser(array $data): ?User
     {
-        $user = $this->user->loadByEmail($data['email']);
         try {
+            $user = $this->user->loadByEmail($data['email']);
             if ($user->getId()) {
                 return $user;
             }
@@ -88,13 +64,7 @@ class Login
         return null;
     }
 
-    /**
-     * Process Not LoggedIn User
-     *
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @return void
-     */
-    protected function processNotLoggedInUser(RequestInterface $request): void
+    private function processNotLoggedInUser(RequestInterface $request): void
     {
         $isRedirectNeeded = false;
         if ($request->getPost('login')) {
@@ -125,13 +95,7 @@ class Login
         }
     }
 
-    /**
-     * Perform Login
-     *
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @return bool
-     */
-    protected function performLogin(RequestInterface $request): bool
+    private function performLogin(RequestInterface $request): bool
     {
         $outputValue = true;
         $postLogin = $request->getPost('login');
@@ -151,13 +115,7 @@ class Login
         return $outputValue;
     }
 
-    /**
-     * Redirect If Needed After Login
-     *
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @return bool
-     */
-    protected function redirectIfNeededAfterLogin(RequestInterface $request): bool
+    private function redirectIfNeededAfterLogin(RequestInterface $request): bool
     {
         $requestUri = null;
 

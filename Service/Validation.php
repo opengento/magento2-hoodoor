@@ -12,13 +12,9 @@ use Opengento\Hoodoor\Model\Admin\User;
 
 class Validation
 {
-    /**
-     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
-     * @param \Opengento\Hoodoor\Model\Admin\User $user
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly CustomerRepositoryInterface $customerRepository,
-        protected readonly User $user
+    public function __construct(
+        private readonly CustomerRepositoryInterface $customerRepository,
+        private readonly User $user
     ) {
     }
 

@@ -7,17 +7,14 @@ declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Processor;
 
-use Magento\Backend\App\Area\FrontNameResolver;
 use Magento\Email\Model\BackendTemplate;
 use Magento\Email\Model\Template;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
-use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\Store;
-use Magento\Store\Model\StoreManagerInterface;
 use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
 use Opengento\Hoodoor\Enum\Config;
 use Opengento\Hoodoor\Model\LoginRequest;
@@ -26,41 +23,19 @@ use Psr\Log\LoggerInterface;
 
 class EmailProcessor
 {
-    /**
-     * @var \Opengento\Hoodoor\Model\LoginRequest|null
-     */
     private ?LoginRequest $accountData;
 
-    /**
-     * @param \Opengento\Hoodoor\Api\RequestLoginRepositoryInterface $loginRequestRepository
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation
-     * @param \Magento\Framework\UrlInterface $url
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Opengento\Hoodoor\Service\Request\Encryption $encryptionService
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly RequestLoginRepositoryInterface $loginRequestRepository,
-        protected readonly ScopeConfigInterface $scopeConfig,
-        protected readonly TransportBuilder $transportBuilder,
-        protected readonly StoreManagerInterface $storeManager,
-        protected readonly StateInterface $inlineTranslation,
-        protected readonly UrlInterface $url,
-        protected readonly LoggerInterface $logger,
-        protected readonly Encryption $encryptionService
+    public function __construct(
+        private readonly RequestLoginRepositoryInterface $loginRequestRepository,
+        private readonly ScopeConfigInterface $scopeConfig,
+        private readonly TransportBuilder $transportBuilder,
+        private readonly StateInterface $inlineTranslation,
+        private readonly LoggerInterface $logger,
+        private readonly Encryption $encryptionService
     ) {
         $this->accountData = null;
     }
 
-    /**
-     * Send Mail
-     *
-     * @param string $to
-     * @param string $type
-     * @return void
-     */
     public function sendMail(string $to, string $type): void
     {
         try {
@@ -75,10 +50,7 @@ class EmailProcessor
             $data = sprintf('email/%s/token/%s', $requestEmail, $requestToken);
             $templateVars = [
                 'type' => $type,
-                'request' => $this->encryptionService->encrypt(
-                    $data,
-                    $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SECRET_KEY->value)
-                )
+                'request' => $this->encryptionService->encrypt($data)
             ];
 
             $this->inlineTranslation->suspend();
@@ -112,13 +84,7 @@ class EmailProcessor
         }
     }
 
-    /**
-     * Get Account Data By Email
-     *
-     * @param string $email
-     * @return \Opengento\Hoodoor\Model\LoginRequest
-     */
-    protected function getAccountDataByEmail(string $email): LoginRequest
+    private function getAccountDataByEmail(string $email): LoginRequest
     {
         if (!$this->accountData) {
             $this->accountData = $this->loginRequestRepository->get($email);

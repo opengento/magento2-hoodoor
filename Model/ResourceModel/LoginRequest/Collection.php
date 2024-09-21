@@ -11,16 +11,8 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection
 {
-    /**
-     * @var string
-     */
     protected $_idFieldName = 'entity_id';
 
-    /**
-     * Construct
-     *
-     * @return void
-     */
     protected function _construct(): void
     {
         $this->_init(

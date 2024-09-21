@@ -11,19 +11,11 @@ use Magento\Framework\Math\Random;
 
 class Password
 {
-    /**
-     * @param \Magento\Framework\Math\Random $random
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly Random $random
+    public function __construct(
+        private readonly Random $random
     ) {
     }
 
-    /**
-     * Generate Unique Hash
-     *
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
     public function generate(): string
     {
         return $this->random->getUniqueHash();

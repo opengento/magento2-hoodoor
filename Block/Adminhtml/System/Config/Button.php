@@ -14,13 +14,6 @@ use Opengento\Hoodoor\Enum\Config;
 
 class Button extends Field
 {
-    /**
-     * Create Element Html (Button + Script)
-     *
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
-     * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
     protected function _getElementHtml(AbstractElement $element): string
     {
         $value = $this->_scopeConfig->getValue(Config::XML_PATH_HOODOOR_SECRET_KEY->value);
@@ -29,13 +22,7 @@ class Button extends Field
         return $html . $this->getButtonHtml() . $this->getJs($element);
     }
 
-    /**
-     * Create Button Block
-     *
-     * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    protected function getButtonHtml(): string
+    private function getButtonHtml(): string
     {
         $button = $this->getLayout()->createBlock(WidgetButton::class)
             ->setData([
@@ -47,13 +34,7 @@ class Button extends Field
         return $button->toHtml();
     }
 
-    /**
-     * Generate Secret Key Script
-     *
-     * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
-     * @return string
-     */
-    protected function getJs(AbstractElement $element): string
+    private function getJs(AbstractElement $element): string
     {
         return '
             <script>

@@ -10,6 +10,7 @@ namespace Opengento\Hoodoor\Controller\Adminhtml\Pwl;
 use Magento\Backend\Block\Admin\Formkey;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\RequestInterface;
+use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\Hoodoor\Service\Queue;
@@ -23,21 +24,16 @@ class RequestLogin implements HttpPostActionInterface
      * @param \Magento\Backend\Block\Admin\Formkey $formKey
      * @param \Opengento\Hoodoor\Service\Queue $queueService
      */
-    public function __construct( //phpcs:ignore
-        protected readonly RequestInterface $request,
-        protected readonly RedirectFactory $redirectFactory,
-        protected readonly MessageManager $messageManager,
-        protected readonly FormKey $formKey,
-        protected readonly Queue $queueService
+    public function __construct(
+        private readonly RequestInterface $request,
+        private readonly RedirectFactory $redirectFactory,
+        private readonly MessageManager $messageManager,
+        private readonly FormKey $formKey,
+        private readonly Queue $queueService
     ) {
     }
 
-    /**
-     * Execute
-     *
-     * @return \Magento\Framework\Controller\Result\Redirect
-     */
-    public function execute()
+    public function execute(): Redirect
     {
         $redirect = $this->redirectFactory->create();
 

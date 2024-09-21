@@ -7,14 +7,12 @@ declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Controller\Account;
 
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\View\Result\Page;
+
 class Edit extends \Magento\Customer\Controller\Account\Edit
 {
-    /**
-     * Execute
-     *
-     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\View\Result\Page
-     */
-    public function execute()
+    public function execute(): ResponseInterface|Page
     {
         if ($this->getRequest()->getParam('changepass')) {
             return $this->_redirect('customer/account');

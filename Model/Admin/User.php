@@ -15,32 +15,10 @@ use Magento\User\Model\UserValidationRules;
 
 class User extends \Magento\User\Model\User
 {
-    /**
-     * @var \Magento\Framework\Serialize\SerializerInterface
-     */
     protected SerializerInterface $serializer;
 
-    /**
-     * @param \Opengento\Hoodoor\Model\ResourceModel\Admin\User $resourceModel
-     * @param \Magento\Framework\Model\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \Magento\User\Helper\Data $userData
-     * @param \Magento\Backend\App\ConfigInterface $config
-     * @param \Magento\Framework\Validator\DataObjectFactory $validatorObjectFactory
-     * @param \Magento\Authorization\Model\RoleFactory $roleFactory
-     * @param \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder
-     * @param \Magento\Framework\Encryption\EncryptorInterface $encryptor
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\User\Model\UserValidationRules $validationRules
-     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
-     * @param array $data
-     * @param \Magento\Framework\Serialize\Serializer\Json|null $serializer
-     * @param \Magento\Framework\App\DeploymentConfig|null $deploymentConfig
-     * @param \Magento\User\Model\Spi\NotificatorInterface|null $notificator
-     */
     public function __construct(
-        protected readonly \Opengento\Hoodoor\Model\ResourceModel\Admin\User $resourceModel,
+        private readonly \Opengento\Hoodoor\Model\ResourceModel\Admin\User $resourceModel,
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
         \Magento\User\Helper\Data $userData,
@@ -78,13 +56,6 @@ class User extends \Magento\User\Model\User
         );
     }
 
-    /**
-     * Load Admin User By Email
-     *
-     * @param string $email
-     * @return $this
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
     public function loadByEmail(string $email): static
     {
         $data = $this->resourceModel->loadByEmail($email);

@@ -25,6 +25,8 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\CsrfAwareActionInterface;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Data\Form\FormKey\Validator;
 use Magento\Framework\Escaper;
 use Magento\Framework\UrlFactory;
@@ -33,43 +35,15 @@ use Magento\Store\Model\StoreManagerInterface;
 use Opengento\Hoodoor\Service\Password;
 
 /**
- * Post create customer action
- *
  * @SuppressWarnings(PHPMD.TooManyFields)
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class CreatePost extends CoreCreatePost implements CsrfAwareActionInterface, HttpPostActionInterface
 {
-    /**
-     * @var string
-     */
     private string $password = "";
 
-    /**
-     * @param \Opengento\Hoodoor\Service\Password $passwordService
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Customer\Api\AccountManagementInterface $accountManagement
-     * @param \Magento\Customer\Helper\Address $addressHelper
-     * @param \Magento\Framework\UrlFactory $urlFactory
-     * @param \Magento\Customer\Model\Metadata\FormFactory $formFactory
-     * @param \Magento\Newsletter\Model\SubscriberFactory $subscriberFactory
-     * @param \Magento\Customer\Api\Data\RegionInterfaceFactory $regionDataFactory
-     * @param \Magento\Customer\Api\Data\AddressInterfaceFactory $addressDataFactory
-     * @param \Magento\Customer\Api\Data\CustomerInterfaceFactory $customerDataFactory
-     * @param \Magento\Customer\Model\Url $customerUrl
-     * @param \Magento\Customer\Model\Registration $registration
-     * @param \Magento\Framework\Escaper $escaper
-     * @param \Magento\Customer\Model\CustomerExtractor $customerExtractor
-     * @param \Magento\Framework\Api\DataObjectHelper $dataObjectHelper
-     * @param \Magento\Customer\Model\Account\Redirect $accountRedirect
-     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
-     * @param \Magento\Framework\Data\Form\FormKey\Validator|null $formKeyValidator
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly Password $passwordService,
+    public function __construct(
+        private readonly Password $passwordService,
         Context $context,
         Session $customerSession,
         ScopeConfigInterface $scopeConfig,
@@ -115,13 +89,7 @@ class CreatePost extends CoreCreatePost implements CsrfAwareActionInterface, Htt
         );
     }
 
-    /**
-     * Execute
-     *
-     * @throws \Magento\Framework\Exception\NotFoundException
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
-    public function execute()
+    public function execute(): ResultInterface|ResponseInterface
     {
         if (!$this->password) {
             $this->password = $this->passwordService->generate();

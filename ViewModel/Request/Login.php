@@ -15,26 +15,13 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 class Login implements ArgumentInterface
 {
-    /**
-     * Construct
-     *
-     * @param \Magento\Framework\UrlInterface $urlFrontend
-     * @param \Magento\Backend\Model\UrlInterface $urlBackend
-     * @param \Magento\Framework\App\State $state
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly FrontendUrlInterface $urlFrontend,
-        protected readonly BackendUrlInterface $urlBackend,
-        protected readonly State $state
+    public function __construct(
+        private readonly FrontendUrlInterface $urlFrontend,
+        private readonly BackendUrlInterface $urlBackend,
+        private readonly State $state
     ) {
     }
 
-    /**
-     * Get Post Action Url
-     *
-     * @return string
-     * @throws \Magento\Framework\Exception\LocalizedException
-     */
     public function getPostActionUrl(): string
     {
         $areaCode = $this->state->getAreaCode();

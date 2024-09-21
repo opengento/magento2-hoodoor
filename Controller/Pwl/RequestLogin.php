@@ -13,25 +13,15 @@ use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\Hoodoor\Service\Queue;
-use Opengento\Hoodoor\Service\Request;
 
 class RequestLogin implements HttpPostActionInterface
 {
-    /**
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @param \Magento\Framework\Controller\Result\RedirectFactory $redirectFactory
-     * @param \Magento\Framework\Message\Manager $messageManager
-     * @param \Magento\Framework\Data\Form\FormKey $formKey
-     * @param \Opengento\Hoodoor\Service\Request $requestService
-     * @param \Opengento\Hoodoor\Service\Queue $queueService
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly RequestInterface $request,
-        protected readonly RedirectFactory $redirectFactory,
-        protected readonly MessageManager $messageManager,
-        protected readonly FormKey $formKey,
-        protected readonly Request $requestService,
-        protected readonly Queue $queueService
+    public function __construct(
+        private readonly RequestInterface $request,
+        private readonly RedirectFactory $redirectFactory,
+        private readonly MessageManager $messageManager,
+        private readonly FormKey $formKey,
+        private readonly Queue $queueService
     ) {
     }
 

@@ -12,24 +12,11 @@ use Opengento\Hoodoor\Enum\Config;
 
 class Manager
 {
-    /**
-     * Construct
-     *
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     */
     public function __construct(
-        protected readonly ScopeConfigInterface $scopeConfig,
+        private readonly ScopeConfigInterface $scopeConfig,
     ) {
     }
 
-    /**
-     * Get Template
-     *
-     * @param string $default
-     * @param string $override
-     * @param string $type
-     * @return string
-     */
     public function getTemplate(string $default, string $override, string $type): string
     {
         $enable = $this->scopeConfig->isSetFlag(Config::XML_PATH_HOODOOR_ENABLE_FRONTEND->value);

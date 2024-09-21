@@ -7,14 +7,11 @@ declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Controller\Account;
 
+use Magento\Framework\App\ResponseInterface;
+
 class ForgotPassword extends \Magento\Customer\Controller\Account\ForgotPassword
 {
-    /**
-     * Deny access to this forgot password feature
-     *
-     * @return \Magento\Framework\App\ResponseInterface
-     */
-    public function execute()
+    public function execute(): ResponseInterface
     {
         $this->messageManager->addErrorMessage(__('Access denied.'));
         return $this->_redirect('customer/account');

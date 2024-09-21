@@ -9,44 +9,23 @@ namespace Opengento\Hoodoor\Service;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Math\Random;
-use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\Hoodoor\Enum\Config;
 use Opengento\Hoodoor\Model\LoginRequestFactory;
 use Opengento\Hoodoor\Model\LoginRequestRepository;
-use Opengento\Hoodoor\Processor\EmailProcessor;
 use Psr\Log\LoggerInterface;
 
 class Request
 {
-    /**
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Opengento\Hoodoor\Model\LoginRequestFactory $loginRequestFactory
-     * @param \Opengento\Hoodoor\Model\LoginRequestRepository $loginRequestRepository
-     * @param \Opengento\Hoodoor\Service\Validation $validationService
-     * @param \Opengento\Hoodoor\Processor\EmailProcessor $emailProcessor
-     * @param \Magento\Framework\Message\Manager $messageManager
-     * @param \Magento\Framework\Math\Random $random
-     * @param \Psr\Log\LoggerInterface $logger
-     */
-    public function __construct( //phpcs:ignore
-        protected readonly ScopeConfigInterface $scopeConfig,
-        protected readonly LoginRequestFactory $loginRequestFactory,
-        protected readonly LoginRequestRepository $loginRequestRepository,
-        protected readonly Validation $validationService,
-        protected readonly EmailProcessor $emailProcessor,
-        protected readonly MessageManager $messageManager,
-        protected readonly Random $random,
-        protected readonly LoggerInterface $logger
+    public function __construct(
+        private readonly ScopeConfigInterface $scopeConfig,
+        private readonly LoginRequestFactory $loginRequestFactory,
+        private readonly LoginRequestRepository $loginRequestRepository,
+        private readonly Validation $validationService,
+        private readonly Random $random,
+        private readonly LoggerInterface $logger
     ) {
     }
 
-    /**
-     * Create Login Request
-     *
-     * @param string $email
-     * @param string $type
-     * @return false
-     */
     public function create(string $email, string $type): bool
     {
         try {

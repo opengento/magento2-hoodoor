@@ -12,11 +12,6 @@ class AccountManagement
     /**
      * Intercept Change Password
      *
-     * @param \Magento\Customer\Model\AccountManagement $subject
-     * @param string $email
-     * @param string $currentPassword
-     * @param string $newPassword
-     * @return void
      * @throws \Exception
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
@@ -26,17 +21,12 @@ class AccountManagement
         string $currentPassword,
         string $newPassword
     ): void {
-        throw new \Exception(_('Access denied.')); //phpcs:ignore
+        throw new \Exception(_('Access denied.'));
     }
 
     /**
      * Intercept Change Password By Id
      *
-     * @param \Magento\Customer\Model\AccountManagement $subject
-     * @param int|string $customerId
-     * @param string $currentPassword
-     * @param string $newPassword
-     * @return void
      * @throws \Exception
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
@@ -46,6 +36,6 @@ class AccountManagement
         string $currentPassword,
         string $newPassword
     ): void {
-        throw new \Exception(_('Access denied.')); //phpcs:ignore
+        throw new \Exception(_('Access denied.'));
     }
 }
