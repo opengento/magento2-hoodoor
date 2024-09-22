@@ -13,4 +13,7 @@
                 type="Opengento\Hoodoor\Controller\Account\ForgotPasswordPost" />
     <preference for="Magento\Customer\Controller\Account\Edit"
                 type="Opengento\Hoodoor\Controller\Account\Edit" />
+    <type name="Magento\Webapi\Controller\Rest">
+        <plugin name="hoodoor_disable_customer_webapi" type="Opengento\Hoodoor\Plugin\Webapi\Controller\Rest\DisableApi" />
+    </type>
 </config>

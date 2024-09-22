@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Service;
 
-use \Firebase\JWT\JWT;
+use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Opengento\Hoodoor\Enum\Config;
