@@ -12,6 +12,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect;
 use Magento\Framework\Controller\Result\RedirectFactory;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
 use Opengento\Hoodoor\Exception\RequestException;
@@ -45,22 +46,22 @@ class ProcessLogin implements HttpGetActionInterface
                         ];
                     }
                     if (isset($params['email']) && isset($params['token'])) {
-                        $loginRequest = $this->loginRequestRepository->get($params['email']);
-                        if ($loginRequest->getToken() === $params['token']) {
-                            if ($loginRequest->hasBeenUsed() || $loginRequest->hasExpired()) {
-                                $this->messageManager->addErrorMessage(
-                                    __('Unable to execute the request. Please try again.')
-                                );
-                                return $redirect->setPath('*');
+                        try {
+                            $loginRequest = $this->loginRequestRepository->get($params['email']);
+                            if ($loginRequest->getToken() === $params['token']) {
+                                if ($loginRequest->hasBeenUsed() || $loginRequest->hasExpired()) {
+                                    $this->messageManager->addErrorMessage(
+                                        __('Unable to execute the request. Please try again.')
+                                    );
+                                    return $redirect->setPath('*');
+                                }
+                                $this->loginRequestRepository->lock($loginRequest);
+                                $this->request->setParams(['email' => $params['email']]);
+                                $this->adminLoginService->perform($this->request);
+                                $this->loginRequestRepository->delete($loginRequest);
                             }
-                            $this->loginRequestRepository->lock($loginRequest);
-                            $this->request->setParams(['email' => $params['email']]);
-                            $this->adminLoginService->perform($this->request);
-                            $this->loginRequestRepository->delete($loginRequest);
-                        } else {
-                            throw new RequestException(
-                                _('Invalid request. Please try again.')
-                            );
+                        } catch (NoSuchEntityException) {
+                            throw new RequestException(_('Invalid request. Please try again.'));
                         }
                     } else {
                         throw new RequestException(

@@ -12,6 +12,7 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\Result\Redirect as RedirectAlias;
 use Magento\Framework\Controller\Result\RedirectFactory;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
 use Opengento\Hoodoor\Exception\RequestException;
@@ -45,18 +46,20 @@ class ProcessLogin implements HttpGetActionInterface
                         ];
                     }
                     if (isset($params['email']) && isset($params['token'])) {
-                        $request = $this->loginRequestRepository->get($params['email']);
-                        if ($request->getToken() === $params['token']) {
-                            if ($request->hasBeenUsed() || $request->hasExpired()) {
-                                $this->messageManager->addErrorMessage(
-                                    __('Unable to execute request. Please try again.')
-                                );
-                                return $redirect->setPath('*/account/login');
+                        try {
+                            $request = $this->loginRequestRepository->get($params['email']);
+                            if ($request->getToken() === $params['token']) {
+                                if ($request->hasBeenUsed() || $request->hasExpired()) {
+                                    $this->messageManager->addErrorMessage(
+                                        __('Unable to execute request. Please try again.')
+                                    );
+                                    return $redirect->setPath('*/account/login');
+                                }
+                                $this->loginRequestRepository->lock($request);
+                                $this->loginService->perform($params);
+                                $this->loginRequestRepository->delete($request);
                             }
-                            $this->loginRequestRepository->lock($request);
-                            $this->loginService->perform($params);
-                            $this->loginRequestRepository->delete($request);
-                        } else {
+                        } catch (NoSuchEntityException) {
                             throw new RequestException(_('Invalid request. Please try again.'));
                         }
                     } else {
