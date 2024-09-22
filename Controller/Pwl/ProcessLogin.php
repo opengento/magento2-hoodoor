@@ -16,17 +16,17 @@ use Magento\Framework\Message\Manager as MessageManager;
 use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
 use Opengento\Hoodoor\Exception\RequestException;
 use Opengento\Hoodoor\Service\Customer\Login as LoginService;
-use Opengento\Hoodoor\Service\Request\Encryption as EncryptionService;
+use Opengento\Hoodoor\Service\JwtManager;
 
 class ProcessLogin implements HttpGetActionInterface
 {
     public function __construct(
         private readonly RequestLoginRepositoryInterface $loginRequestRepository,
         private readonly LoginService $loginService,
-        private readonly EncryptionService $encryptionService,
         private readonly RequestInterface $request,
         private readonly RedirectFactory $redirectFactory,
-        private readonly MessageManager $messageManager
+        private readonly MessageManager $messageManager,
+        private readonly JwtManager $jwtManager
     ) {
     }
 
@@ -37,10 +37,13 @@ class ProcessLogin implements HttpGetActionInterface
         if ($params) {
             try {
                 if (isset($params['request'])) {
-                    $decryptedData = $this->encryptionService->decrypt($params['request']);
-                    $params = explode("/", $decryptedData);
-                    $params = array_chunk($params, 2);
-                    $params = array_combine(array_column($params, 0), array_column($params, 1));
+                    $decryptedData = $this->jwtManager->validateToken($params['request']);
+                    if ($decryptedData) {
+                        $params = [
+                            'email' => $decryptedData->email,
+                            'token' => $decryptedData->token
+                        ];
+                    }
                     if (isset($params['email']) && isset($params['token'])) {
                         $request = $this->loginRequestRepository->get($params['email']);
                         if ($request->getToken() === $params['token']) {

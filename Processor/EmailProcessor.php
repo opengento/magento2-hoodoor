@@ -18,7 +18,7 @@ use Magento\Store\Model\Store;
 use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
 use Opengento\Hoodoor\Enum\Config;
 use Opengento\Hoodoor\Model\LoginRequest;
-use Opengento\Hoodoor\Service\Request\Encryption;
+use Opengento\Hoodoor\Service\JwtManager;
 use Psr\Log\LoggerInterface;
 
 class EmailProcessor
@@ -31,7 +31,7 @@ class EmailProcessor
         private readonly TransportBuilder $transportBuilder,
         private readonly StateInterface $inlineTranslation,
         private readonly LoggerInterface $logger,
-        private readonly Encryption $encryptionService
+        private readonly JwtManager $jwtManager
     ) {
         $this->accountData = null;
     }
@@ -47,10 +47,12 @@ class EmailProcessor
             $requestEmail = $accountData->getEmail();
             $requestToken = $accountData->getToken();
 
-            $data = sprintf('email/%s/token/%s', $requestEmail, $requestToken);
             $templateVars = [
                 'type' => $type,
-                'request' => $this->encryptionService->encrypt($data)
+                'request' => $this->jwtManager->generateToken([
+                    'email' => $requestEmail,
+                    'token' => $requestToken
+                ], 900)
             ];
 
             $this->inlineTranslation->suspend();
