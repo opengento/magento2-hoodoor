@@ -12,7 +12,8 @@
     "require": {
         "php": "^8.1",
         "psr/log": "*",
-        "magento/framework": "*"
+        "magento/framework": "*",
+        "firebase/php-jwt": "^6.10"
     },
     "require-dev": {
         "magento/magento-coding-standard": "^33",
