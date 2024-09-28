@@ -7,16 +7,16 @@ declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Service;
 
-use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Opengento\Hoodoor\Enum\Config;
+use Opengento\Hoodoor\Helper\JwtHelper;
 use Psr\Log\LoggerInterface;
 
 class JwtManager
 {
     public function __construct(
-        private readonly JWT $jwt,
+        private readonly JwtHelper $jwtHelper,
         private readonly ScopeConfigInterface $scopeConfig,
         private readonly LoggerInterface $logger,
         private string $secretKey = ""
@@ -34,13 +34,13 @@ class JwtManager
             'exp' => $expire,
         ]);
 
-        return $this->jwt->encode($tokenPayload, $this->secretKey, 'HS256');
+        return $this->jwtHelper->encode($tokenPayload, $this->secretKey, 'HS256');
     }
 
     public function validateToken(string $token): bool|\stdClass
     {
         try {
-            return $this->jwt->decode($token, new Key($this->secretKey, 'HS256'));
+            return $this->jwtHelper->decode($token, new Key($this->secretKey, 'HS256'));
         } catch (\Exception $e) {
             $this->logger->critical($e->getMessage());
         }
