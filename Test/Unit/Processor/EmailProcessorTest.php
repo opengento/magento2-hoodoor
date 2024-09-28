@@ -1,4 +1,9 @@
 <?php
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Test\Unit\Processor;
 
@@ -21,26 +26,19 @@ use Psr\Log\LoggerInterface;
 
 class EmailProcessorTest extends TestCase
 {
-    /** @var MockObject|RequestLoginRepositoryInterface */
-    private $loginRequestRepositoryMock;
+    private RequestLoginRepositoryInterface|MockObject $loginRequestRepositoryMock;
 
-    /** @var MockObject|ScopeConfigInterface */
-    private $scopeConfigMock;
+    private ScopeConfigInterface|MockObject $scopeConfigMock;
 
-    /** @var MockObject|TransportBuilder */
-    private $transportBuilderMock;
+    private TransportBuilder|MockObject $transportBuilderMock;
 
-    /** @var MockObject|StateInterface */
-    private $inlineTranslationMock;
+    private StateInterface|MockObject $inlineTranslationMock;
 
-    /** @var MockObject|LoggerInterface */
-    private $loggerMock;
+    private LoggerInterface|MockObject $loggerMock;
 
-    /** @var MockObject|JwtManager */
-    private $jwtManagerMock;
+    private JwtManager|MockObject $jwtManagerMock;
 
-    /** @var EmailProcessor */
-    private $emailProcessor;
+    private EmailProcessor $emailProcessor;
 
     protected function setUp(): void
     {
