@@ -12,17 +12,18 @@ use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 use Magento\Framework\UrlInterface as FrontendUrlInterface;
 use Opengento\Hoodoor\ViewModel\Request\Login;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class LoginTest extends TestCase
 {
-    private $urlBackendMock;
+    private BackendUrlInterface|MockObject $urlBackendMock;
 
-    private $urlFrontendMock;
+    private FrontendUrlInterface|MockObject $urlFrontendMock;
 
-    private $stateMock;
+    private State|MockObject $stateMock;
 
-    private $loginViewModel;
+    private Login $loginViewModel;
 
     protected function setUp(): void
     {
