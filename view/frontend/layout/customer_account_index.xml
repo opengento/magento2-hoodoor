@@ -10,7 +10,7 @@
     <body>
         <referenceContainer name="content">
             <referenceBlock name="customer_account_dashboard_info">
-                <action method="setTemplate">
+                <action ifconfig="hoodoor/general/enable_frontend" method="setTemplate">
                     <argument name="template" xsi:type="helper"
                               helper="Opengento\Hoodoor\Model\Template\Manager::getTemplate">
                         <param name="default">Magento_Customer::account/dashboard/info.phtml</param>
