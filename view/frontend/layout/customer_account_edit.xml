@@ -10,7 +10,7 @@
     <body>
         <referenceContainer name="content">
             <referenceBlock name="customer_edit" template="Opengento_Hoodoor::form/edit.phtml">
-                <action method="setTemplate">
+                <action ifconfig="hoodoor/general/enable_frontend" method="setTemplate">
                     <argument name="template" xsi:type="helper"
                               helper="Opengento\Hoodoor\Model\Template\Manager::getTemplate">
                         <param name="default">Magento_Backend::form/edit.phtml</param>

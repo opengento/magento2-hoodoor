@@ -11,7 +11,7 @@
         <referenceContainer name="content">
             <referenceBlock class="Magento\Customer\Block\Form\Register" name="customer_form_register"
                             template="Magento_Customer::form/register.phtml">
-                <action method="setTemplate">
+                <action ifconfig="hoodoor/general/enable_frontend" method="setTemplate">
                     <argument name="template" xsi:type="helper"
                               helper="Opengento\Hoodoor\Model\Template\Manager::getTemplate">
                         <param name="default">Magento_Customer::form/register.phtml</param>
