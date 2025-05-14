@@ -21,6 +21,7 @@
                 type="Opengento\Hoodoor\Controller\Account\Edit" />
     <preference for="Magento\AdminAdobeIms\Plugin\PerformIdentityCheckMessagePlugin"
                 type="Opengento\Hoodoor\Plugin\AdobeImsReAuth\PerformIdentityCheckMessagePlugin"/>
+    <preference for="Magento\User\Controller\Adminhtml\User\Save" type="Opengento\Hoodoor\Model\Admin\User\Save"/>
     <type name="Magento\Webapi\Controller\Rest">
         <plugin name="hoodoor_disable_customer_webapi" type="Opengento\Hoodoor\Plugin\Webapi\Controller\Rest\DisableApi" />
     </type>

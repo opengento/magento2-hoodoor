@@ -10,6 +10,8 @@
     <module name="Opengento_Hoodoor">
         <sequence>
             <module name="Magento_Customer"/>
+            <module name="Magento_Backend"/>
+            <module name="Magento_User"/>
         </sequence>
     </module>
 </config>
