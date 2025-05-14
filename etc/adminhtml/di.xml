@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © OpenGento, All rights reserved.
+ * See LICENSE bundled with this library for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\User\Block\Role\Tab\Info">
+        <plugin name="remove_password_verify_fields_role_tab_info"
+                type="Opengento\Hoodoor\Plugin\AdobeImsReAuth\Block\User\Role\Tab\RemoveReAuthVerification"/>
+    </type>
+    <type name="Magento\User\Block\User\Edit\Tab\Main">
+        <plugin name="remove_password_verify_fields_user_edit_tab_main"
+                type="Opengento\Hoodoor\Plugin\AdobeImsReAuth\Block\User\Edit\Tab\RemoveReAuthVerification"/>
+    </type>
+    <type name="Magento\Backend\Block\System\Account\Edit\Form">
+        <plugin name="remove_password_verify_fields_system_account_edit_form"
+                type="Opengento\Hoodoor\Plugin\AdobeImsReAuth\Block\System\Account\Edit\RemoveReAuthVerification"/>
+    </type>
+</config>
