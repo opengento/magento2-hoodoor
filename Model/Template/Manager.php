@@ -17,6 +17,7 @@ class Manager
     ) {
     }
 
+    /** Return the override template if Hoodoor is enabled for the given type, otherwise the default. */
     public function getTemplate(string $default, string $override, string $type): string
     {
         $enable = $this->scopeConfig->isSetFlag(Config::XML_PATH_HOODOOR_ENABLE_FRONTEND->value);

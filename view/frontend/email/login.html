@@ -7,7 +7,7 @@
 <!--@subject {{trans "%store_name: Your Authentication Request" store_name=$store.frontend_name}} @-->
 <!--@vars {
 "var store.frontend_name":"Store Name",
-"var this.getUrl($store,'customer/pwl/processlogin',[_query:[request:$request],_nosid:1])":"Customer Login Url"
+"var login_url":"Customer Login Url"
 } @-->
 
 {{template config_path="design/email/header_template"}}
@@ -15,8 +15,8 @@
 <p>{{trans "To authenticate, please click on the link below:"}}</p>
 
 <p style="line-break: anywhere;">
-    <a href="{{var this.getUrl($store,'customer/pwl/processlogin',[_query:[request:$request],_nosid:1])}}" target="_blank">
-        {{var this.getUrl($store,'customer/pwl/processlogin',[_query:[request:$request],_nosid:1])}}
+    <a href="{{var login_url}}" target="_blank">
+        {{var login_url}}
     </a>
 </p>
 

@@ -12,11 +12,13 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class LoginRequest extends AbstractDb
 {
+    #[\Override]
     protected function _construct(): void
     {
         $this->_init('login_request_queue', 'entity_id');
     }
 
+    #[\Override]
     public function load(AbstractModel $object, $value, $field = null): LoginRequest|static
     {
         if ($field === 'email') {

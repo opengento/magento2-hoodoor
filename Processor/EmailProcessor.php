@@ -7,12 +7,14 @@ declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Processor;
 
+use Magento\Backend\Model\UrlInterface as BackendUrlInterface;
 use Magento\Email\Model\BackendTemplate;
 use Magento\Email\Model\Template;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
+use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\Store;
 use Opengento\Hoodoor\Api\RequestLoginRepositoryInterface;
@@ -31,15 +33,20 @@ class EmailProcessor
         private readonly TransportBuilder $transportBuilder,
         private readonly StateInterface $inlineTranslation,
         private readonly LoggerInterface $logger,
-        private readonly JwtManager $jwtManager
+        private readonly JwtManager $jwtManager,
+        private readonly UrlInterface $frontendUrl,
+        private readonly BackendUrlInterface $backendUrl
     ) {
         $this->accountData = null;
     }
 
+    /** Build and send the password-less login email with a JWT link. */
     public function sendMail(string $to, string $type): void
     {
         try {
-            $templateId = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_TEMPLATE_ID->value);
+            $templateId = $type === 'admin'
+                ? 'admin_login'
+                : $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_TEMPLATE_ID->value);
             $fromEmail = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SENDER_EMAIL->value);
             $fromName = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SENDER_NAME->value);
 
@@ -47,12 +54,19 @@ class EmailProcessor
             $requestEmail = $accountData->getEmail();
             $requestToken = $accountData->getToken();
 
+            $jwtToken = $this->jwtManager->generateToken([
+                'email' => $requestEmail,
+                'token' => $requestToken
+            ], 900);
+
+            $loginUrl = $type === 'admin'
+                ? $this->backendUrl->getUrl('adminhtml/pwl/processlogin', ['request' => $jwtToken, '_nosid' => true])
+                : $this->frontendUrl->getUrl('customer/pwl/processlogin', ['_query' => ['request' => $jwtToken], '_nosid' => true]);
+
             $templateVars = [
                 'type' => $type,
-                'request' => $this->jwtManager->generateToken([
-                    'email' => $requestEmail,
-                    'token' => $requestToken
-                ], 900)
+                'request' => $jwtToken,
+                'login_url' => $loginUrl
             ];
 
             $this->inlineTranslation->suspend();
@@ -86,6 +100,7 @@ class EmailProcessor
         }
     }
 
+    /** Retrieve the login request entity for the given email (cached per instance). */
     private function getAccountDataByEmail(string $email): LoginRequest
     {
         if (!$this->accountData) {

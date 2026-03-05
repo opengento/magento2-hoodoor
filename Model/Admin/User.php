@@ -29,11 +29,11 @@ class User extends \Magento\User\Model\User
         \Magento\Framework\Encryption\EncryptorInterface $encryptor,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         UserValidationRules $validationRules,
-        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
-        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        ?\Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        ?\Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = [],
-        Json $serializer = null,
-        DeploymentConfig $deploymentConfig = null,
+        ?Json $serializer = null,
+        ?DeploymentConfig $deploymentConfig = null,
         ?NotificatorInterface $notificator = null
     ) {
         parent::__construct(
@@ -56,6 +56,7 @@ class User extends \Magento\User\Model\User
         );
     }
 
+    /** Load admin user data by email address and populate this model. */
     public function loadByEmail(string $email): static
     {
         $data = $this->resourceModel->loadByEmail($email);

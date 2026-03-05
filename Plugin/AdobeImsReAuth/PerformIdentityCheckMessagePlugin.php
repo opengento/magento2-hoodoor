@@ -14,7 +14,7 @@ use Magento\User\Model\User;
 
 class PerformIdentityCheckMessagePlugin
 {
-    private const XML_PATH_HOODOOR_ENABLE_ADMIN = 'hoodoor/general/enable_admin';
+    private const string XML_PATH_HOODOOR_ENABLE_ADMIN = 'hoodoor/general/enable_admin';
 
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig,
@@ -26,6 +26,7 @@ class PerformIdentityCheckMessagePlugin
     /**
      * @throws AuthenticationException
      */
+    /** Skip identity verification when Hoodoor admin is enabled, or wrap IMS re-auth errors. */
     public function aroundPerformIdentityCheck(User $subject, callable $proceed, ?string $passwordString)
     {
         $hoodoorAdminIsEnable = $this->scopeConfig->isSetFlag(self::XML_PATH_HOODOOR_ENABLE_ADMIN);
@@ -39,7 +40,7 @@ class PerformIdentityCheckMessagePlugin
 
         try {
             return $proceed($passwordString);
-        } catch (AuthenticationException $exception) {
+        } catch (AuthenticationException) {
             throw new AuthenticationException(
                 __('Please perform the AdobeIms reAuth and try again.')
             );

@@ -15,6 +15,7 @@ class DisableApiTest extends TestCase
 
     private Rest|MockObject $restControllerMock;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->plugin = new DisableApi();

@@ -26,6 +26,7 @@ class Request
     ) {
     }
 
+    /** Create and persist a new login request for the given email and type. */
     public function create(string $email, string $type): bool
     {
         try {

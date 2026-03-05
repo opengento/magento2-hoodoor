@@ -16,6 +16,8 @@ use Opengento\Hoodoor\Service\Queue;
 
 class RequestLogin implements HttpPostActionInterface
 {
+    use RequestLoginTrait;
+
     public function __construct(
         private readonly RequestInterface $request,
         private readonly RedirectFactory $redirectFactory,
@@ -25,42 +27,28 @@ class RequestLogin implements HttpPostActionInterface
     ) {
     }
 
-    /**
-     * Execute
-     *
-     * @return \Magento\Framework\Controller\Result\Redirect
-     */
-    public function execute()
+    protected function isFormKeyValid(): bool
     {
-        $redirect = $this->redirectFactory->create();
+        return $this->formKey->isPresent();
+    }
 
-        $params = $this->request->getParams();
-        if ($params) {
-            $isFormKey = $this->formKey->isPresent();
-            if (!$isFormKey) {
-                $this->messageManager->addErrorMessage(
-                    __('Invalid Form Key. Please refresh the page.')
-                );
-                return $redirect->setPath('*/*/login');
-            }
-            if (!isset($params['login']['username'])) {
-                $this->messageManager->addErrorMessage(
-                    __('You must enter a valid email address.')
-                );
-                return $redirect->setPath('*/*/login');
-            } else {
-                try {
-                    $this->queueService->add($params, 'customer');
-                    $this->messageManager->addSuccessMessage(
-                        __('If a customer account exists, you will receive an email to proceed with your request.')
-                    );
-                } catch (\Exception $e) {
-                    $this->messageManager->addErrorMessage($e->getMessage());
-                    return $redirect->setPath('*/*/login');
-                }
-            }
-        }
+    protected function getLoginType(): string
+    {
+        return 'customer';
+    }
 
-        return $redirect->setPath('customer/account');
+    protected function getErrorRedirectPath(): string
+    {
+        return '*/*/login';
+    }
+
+    protected function getSuccessRedirectPath(): string
+    {
+        return 'customer/account';
+    }
+
+    protected function getSuccessMessage(): string
+    {
+        return 'If a customer account exists, you will receive an email to proceed with your request.';
     }
 }

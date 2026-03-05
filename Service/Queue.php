@@ -17,6 +17,7 @@ class Queue
     ) {
     }
 
+    /** Create a login request and send the login email if the account is valid. */
     public function add(array $params, string $type): bool
     {
         $success = $this->requestService->create($params['login']['username'], $type);

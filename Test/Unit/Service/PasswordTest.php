@@ -18,6 +18,7 @@ class PasswordTest extends TestCase
 
     private Password $passwordService;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->randomMock = $this->createMock(Random::class);

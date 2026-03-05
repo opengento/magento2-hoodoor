@@ -37,6 +37,7 @@ class RequestTest extends TestCase
 
     private Request $requestService;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->scopeConfigMock = $this->createMock(ScopeConfigInterface::class);

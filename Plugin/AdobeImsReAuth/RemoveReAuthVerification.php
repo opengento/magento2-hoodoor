@@ -5,9 +5,9 @@
  */
 declare(strict_types=1);
 
-namespace Opengento\Hoodoor\Plugin\AdobeImsReAuth\Block\User\Role\Tab;
+namespace Opengento\Hoodoor\Plugin\AdobeImsReAuth;
 
-use Magento\User\Block\Role\Tab\Info;
+use Magento\Backend\Block\Widget\Form\Generic;
 use Opengento\Hoodoor\Service\Admin\PasswordVerification;
 
 class RemoveReAuthVerification
@@ -18,7 +18,8 @@ class RemoveReAuthVerification
     {
     }
 
-    public function beforeGetFormHtml(Info $subject): void
+    /** Remove password verification fields from the admin form. */
+    public function beforeGetFormHtml(Generic $subject): void
     {
         $this->passwordVerification->remove($subject);
     }

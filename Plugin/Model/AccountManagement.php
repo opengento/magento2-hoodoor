@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Plugin\Model;
 
+use Magento\Framework\Exception\LocalizedException;
+
 class AccountManagement
 {
     /**
@@ -21,7 +23,7 @@ class AccountManagement
         string $currentPassword,
         string $newPassword
     ): void {
-        throw new \Exception(_('Access denied.'));
+        throw new LocalizedException(__('Access denied.'));
     }
 
     /**
@@ -36,6 +38,6 @@ class AccountManagement
         string $currentPassword,
         string $newPassword
     ): void {
-        throw new \Exception(_('Access denied.'));
+        throw new LocalizedException(__('Access denied.'));
     }
 }

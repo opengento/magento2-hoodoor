@@ -14,4 +14,11 @@
               module="Opengento_Hoodoor"
               area="frontend"
     />
+    <template id="admin_login"
+              label="Admin Login"
+              file="login.html"
+              type="html"
+              module="Opengento_Hoodoor"
+              area="adminhtml"
+    />
 </config>

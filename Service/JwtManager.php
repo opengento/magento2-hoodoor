@@ -24,6 +24,7 @@ class JwtManager
         $this->secretKey = $this->scopeConfig->getValue(Config::XML_PATH_HOODOOR_SECRET_KEY->value);
     }
 
+    /** Generate a signed JWT with the given payload and expiration delay. */
     public function generateToken(array $payload, int $expirationInSeconds): string
     {
         $issuedAt = time();
@@ -37,6 +38,7 @@ class JwtManager
         return $this->jwtHelper->encode($tokenPayload, $this->secretKey, 'HS256');
     }
 
+    /** Validate and decode a JWT, returning the payload or false on failure. */
     public function validateToken(string $token): bool|\stdClass
     {
         try {

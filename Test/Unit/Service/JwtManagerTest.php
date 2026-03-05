@@ -28,6 +28,7 @@ class JwtManagerTest extends TestCase
 
     private string $secretKey = 'test_secret_key';
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->jwtHelperMock = $this->createMock(JwtHelper::class);

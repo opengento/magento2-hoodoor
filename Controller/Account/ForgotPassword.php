@@ -11,6 +11,8 @@ use Magento\Framework\App\ResponseInterface;
 
 class ForgotPassword extends \Magento\Customer\Controller\Account\ForgotPassword
 {
+    /** Block access to the forgot-password page when Hoodoor is active. */
+    #[\Override]
     public function execute(): ResponseInterface
     {
         $this->messageManager->addErrorMessage(__('Access denied.'));

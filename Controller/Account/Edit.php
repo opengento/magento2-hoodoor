@@ -12,6 +12,8 @@ use Magento\Framework\View\Result\Page;
 
 class Edit extends \Magento\Customer\Controller\Account\Edit
 {
+    /** Redirect to account dashboard if a password change is requested, otherwise render normally. */
+    #[\Override]
     public function execute(): ResponseInterface|Page
     {
         if ($this->getRequest()->getParam('changepass')) {

@@ -33,6 +33,7 @@ class Login
     ) {
     }
 
+    /** Perform password-less admin login by setting a temporary password and authenticating. */
     public function perform(RequestInterface $request): void
     {
         $params = $request->getParams();
@@ -51,6 +52,7 @@ class Login
         }
     }
 
+    /** Load and return the admin user by email, or null if not found. */
     private function getBackendUser(array $data): ?User
     {
         try {
@@ -64,6 +66,7 @@ class Login
         return null;
     }
 
+    /** Attempt login and forward to the appropriate backend action if not authenticated. */
     private function processNotLoggedInUser(RequestInterface $request): void
     {
         $isRedirectNeeded = false;
@@ -95,6 +98,7 @@ class Login
         }
     }
 
+    /** Authenticate the admin user with the credentials from the request. */
     private function performLogin(RequestInterface $request): bool
     {
         $outputValue = true;
@@ -115,6 +119,7 @@ class Login
         return $outputValue;
     }
 
+    /** Redirect to the startup page or request URI after a successful login. */
     private function redirectIfNeededAfterLogin(RequestInterface $request): bool
     {
         $requestUri = null;

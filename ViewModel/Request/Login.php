@@ -22,6 +22,7 @@ class Login implements ArgumentInterface
     ) {
     }
 
+    /** Return the form POST URL for the login request, based on the current area (admin or frontend). */
     public function getPostActionUrl(): string
     {
         $areaCode = $this->state->getAreaCode();
