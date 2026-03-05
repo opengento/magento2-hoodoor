@@ -16,6 +16,7 @@ class Password
     ) {
     }
 
+    /** Generate a random unique password hash. */
     public function generate(): string
     {
         return $this->random->getUniqueHash();

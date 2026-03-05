@@ -12,11 +12,13 @@ use Firebase\JWT\Key;
 
 class JwtHelper
 {
+    /** Encode a payload into a JWT string. */
     public function encode(array $payload, string $key, string $alg): string
     {
         return JWT::encode($payload, $key, $alg);
     }
 
+    /** Decode a JWT string and return the payload as an object. */
     public function decode(string $jwt, Key $key): \stdClass
     {
         return JWT::decode($jwt, $key);

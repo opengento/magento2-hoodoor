@@ -16,7 +16,7 @@ use Magento\User\Model\User;
 
 class Save extends CoreSave
 {
-    private const XML_PATH_ENABLE_ADMIN = 'hoodoor/general/enable_admin';
+    private const string XML_PATH_ENABLE_ADMIN = 'hoodoor/general/enable_admin';
 
     private $securityCookie;
 
@@ -30,6 +30,7 @@ class Save extends CoreSave
         parent::__construct($context, $coreRegistry, $userFactory);
     }
 
+    #[\Override]
     public function execute(): void
     {
         if(!$this->isEnabled()) {
@@ -79,7 +80,7 @@ class Save extends CoreSave
             $this->_redirect('adminhtml/*/');
 
             $model->sendNotificationEmailsIfRequired();
-        } catch (UserLockedException $e) {
+        } catch (UserLockedException) {
             $this->_auth->logout();
             $this->getSecurityCookie()->setLogoutReasonCookie(
                 \Magento\Security\Model\AdminSessionsManager::LOGOUT_REASON_USER_LOCKED
@@ -99,6 +100,7 @@ class Save extends CoreSave
         }
     }
 
+    /** Retrieve the SecurityCookie instance, falling back to the ObjectManager. */
     private function getSecurityCookie()
     {
         if (!($this->securityCookie instanceof SecurityCookie)) {
@@ -108,6 +110,7 @@ class Save extends CoreSave
         }
     }
 
+    /** Check whether Hoodoor password-less login is enabled for admin. */
     private function isEnabled(): bool
     {
         return $this->scopeConfig->isSetFlag(self::XML_PATH_ENABLE_ADMIN);

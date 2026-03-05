@@ -21,6 +21,7 @@ class QueueTest extends TestCase
 
     private Queue $queueService;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->requestServiceMock = $this->createMock(Request::class);

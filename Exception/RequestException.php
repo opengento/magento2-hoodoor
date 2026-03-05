@@ -7,7 +7,9 @@ declare(strict_types=1);
 
 namespace Opengento\Hoodoor\Exception;
 
-class RequestException extends \Exception
+use Magento\Framework\Exception\LocalizedException;
+
+class RequestException extends LocalizedException
 {
 
 }

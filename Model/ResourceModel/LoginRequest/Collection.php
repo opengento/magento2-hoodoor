@@ -13,6 +13,7 @@ class Collection extends AbstractCollection
 {
     protected $_idFieldName = 'entity_id';
 
+    #[\Override]
     protected function _construct(): void
     {
         $this->_init(

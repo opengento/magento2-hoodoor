@@ -21,6 +21,7 @@ class Validation
     ) {
     }
 
+    /** Validate that an active account exists for the given email and type. */
     public function validate(string $email, string $type): bool
     {
         try {

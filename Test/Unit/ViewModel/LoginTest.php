@@ -25,6 +25,7 @@ class LoginTest extends TestCase
 
     private Login $loginViewModel;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->urlBackendMock = $this->createMock(BackendUrlInterface::class);

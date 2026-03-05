@@ -40,6 +40,7 @@ class EmailProcessorTest extends TestCase
 
     private EmailProcessor $emailProcessor;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->loginRequestRepositoryMock = $this->createMock(RequestLoginRepositoryInterface::class);

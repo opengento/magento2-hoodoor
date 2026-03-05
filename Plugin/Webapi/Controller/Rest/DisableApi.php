@@ -13,6 +13,7 @@ use Magento\Webapi\Controller\Rest;
 
 class DisableApi
 {
+    /** Block customer-related REST API routes to prevent password-based access. */
     public function beforeDispatch(Rest $subject, RequestInterface $request)
     {
         $blockedRoutes = [

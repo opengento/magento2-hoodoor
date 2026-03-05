@@ -37,6 +37,7 @@ class Login
     ) {
     }
 
+    /** Perform password-less customer login by setting a temporary password and authenticating. */
     public function perform(array $data): bool
     {
         try {
@@ -62,16 +63,19 @@ class Login
         return false;
     }
 
+    /** Hash a plain-text password for storage. */
     private function createPasswordHash(string $password): string
     {
         return $this->encryptor->getHash($password, true);
     }
 
+    /** Retrieve the cookie manager instance. */
     private function getCookieManager(): PhpCookieManager
     {
         return $this->cookieMetadataManager;
     }
 
+    /** Retrieve the cookie metadata factory instance. */
     private function getCookieMetadataFactory(): CookieMetadataFactory
     {
         return $this->cookieMetadataFactory;

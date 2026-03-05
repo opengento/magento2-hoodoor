@@ -26,6 +26,7 @@ class ValidationTest extends TestCase
 
     private Validation $validationService;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->customerRepositoryMock = $this->createMock(CustomerRepositoryInterface::class);

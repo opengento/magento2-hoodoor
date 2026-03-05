@@ -10,7 +10,7 @@
         "free"
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.3",
         "psr/log": "*",
         "magento/framework": "*",
         "firebase/php-jwt": "^6.10"

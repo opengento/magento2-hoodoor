@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Opengento\Hoodoor\Test\Unit\Plugin\Model;
 
 use Magento\Customer\Model\AccountManagement as SubjectAccountManagement;
+use Magento\Framework\Exception\LocalizedException;
 use Opengento\Hoodoor\Plugin\Model\AccountManagement;
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +16,7 @@ class AccountManagementTest extends TestCase
 {
     private AccountManagement $plugin;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->plugin = new AccountManagement();
@@ -22,7 +24,7 @@ class AccountManagementTest extends TestCase
 
     public function testBeforeChangePasswordThrowsException()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(LocalizedException::class);
         $this->expectExceptionMessage('Access denied.');
 
         $this->plugin->beforeChangePassword(
@@ -35,7 +37,7 @@ class AccountManagementTest extends TestCase
 
     public function testBeforeChangePasswordByIdThrowsException()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(LocalizedException::class);
         $this->expectExceptionMessage('Access denied.');
 
         $this->plugin->beforeChangePasswordById(

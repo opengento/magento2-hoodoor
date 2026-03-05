@@ -48,6 +48,7 @@ class LoginTest extends TestCase
 
     private Login $loginService;
 
+    #[\Override]
     protected function setUp(): void
     {
         $this->customerRepositoryMock = $this->createMock(CustomerRepositoryInterface::class);

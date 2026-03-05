@@ -11,6 +11,8 @@ use Magento\Framework\App\ResponseInterface;
 
 class ForgotPasswordPost extends \Magento\Customer\Controller\Account\ForgotPasswordPost
 {
+    /** Block the forgot-password form submission when Hoodoor is active. */
+    #[\Override]
     public function execute(): ResponseInterface
     {
         $this->messageManager->addErrorMessage(__('Access denied.'));

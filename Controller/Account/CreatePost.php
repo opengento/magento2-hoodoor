@@ -63,7 +63,7 @@ class CreatePost extends CoreCreatePost implements CsrfAwareActionInterface, Htt
         DataObjectHelper $dataObjectHelper,
         AccountRedirect $accountRedirect,
         CustomerRepository $customerRepository,
-        Validator $formKeyValidator = null
+        ?Validator $formKeyValidator = null
     ) {
         parent::__construct(
             $context,
@@ -89,6 +89,8 @@ class CreatePost extends CoreCreatePost implements CsrfAwareActionInterface, Htt
         );
     }
 
+    /** Inject a generated password before delegating to the core account creation. */
+    #[\Override]
     public function execute(): ResultInterface|ResponseInterface
     {
         if (!$this->password) {

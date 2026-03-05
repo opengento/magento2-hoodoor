@@ -7,14 +7,14 @@
 <!--@subject {{trans "%store_name: Your Authentication Request" store_name=$store.frontend_name}} @-->
 <!--@vars {
 "var store.frontend_name":"Store Name",
-"var this.getUrl($store,'admin/pwl/processlogin',[_query:[request:$request],_nosid:1])":"Admin User Login Url"
+"var login_url":"Admin User Login Url"
 } @-->
 
 <p>{{trans "To authenticate, please click on the link below:"}}</p>
 
 <p style="line-break: anywhere;">
-    <a href="{{var this.getUrl($store,'admin/pwl/processlogin',[_query:[request:$request],_nosid:1])}}" target="_blank">
-        {{var this.getUrl($store,'admin/pwl/processlogin',[_query:[request:$request],_nosid:1])}}
+    <a href="{{var login_url}}" target="_blank">
+        {{var login_url}}
     </a>
 </p>
 

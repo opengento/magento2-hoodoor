@@ -21,6 +21,7 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
     ) {
     }
 
+    #[\Override]
     public function get(string $email): LoginRequest
     {
         $model = $this->loginRequestFactory->create();
@@ -31,6 +32,7 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
         return $model;
     }
 
+    #[\Override]
     public function getById(string $id): LoginRequest
     {
         $model = $this->loginRequestFactory->create();
@@ -41,6 +43,7 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
         return $model;
     }
 
+    #[\Override]
     public function save(LoginRequest $model): bool
     {
         try {
@@ -54,6 +57,7 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
         return true;
     }
 
+    #[\Override]
     public function delete(LoginRequest $model): bool
     {
         try {
@@ -67,6 +71,7 @@ class LoginRequestRepository implements RequestLoginRepositoryInterface
         return true;
     }
 
+    #[\Override]
     public function lock(LoginRequest $model): bool
     {
         try {

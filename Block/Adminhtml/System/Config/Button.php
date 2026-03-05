@@ -14,6 +14,7 @@ use Opengento\Hoodoor\Enum\Config;
 
 class Button extends Field
 {
+    #[\Override]
     protected function _getElementHtml(AbstractElement $element): string
     {
         $value = $this->_scopeConfig->getValue(Config::XML_PATH_HOODOOR_SECRET_KEY->value);
@@ -22,6 +23,7 @@ class Button extends Field
         return $html . $this->getButtonHtml() . $this->getJs($element);
     }
 
+    /** Render the "Generate Secret Key" button widget. */
     private function getButtonHtml(): string
     {
         $button = $this->getLayout()->createBlock(WidgetButton::class)
@@ -34,6 +36,7 @@ class Button extends Field
         return $button->toHtml();
     }
 
+    /** Return inline JS that generates a random UUID on button click. */
     private function getJs(AbstractElement $element): string
     {
         return '
